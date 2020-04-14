@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">KebOn</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="daftar_akun">Don\'t have an account? SIGN UP</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Already have an account? LOG IN</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="starter_pack">Starter Pack</string>
+    <string name="lihat_semua">Lihat Semua</string>
+    <string name="monstera_pot_kecil_dll">Monstera, Pot kecil, dll...</string>
+    <string name="let_s_live_a_greener_life">Let\'s Live a Greener Life!</string>
+    <string name="hello_kresna">HELLO KRESNA</string>
+    <string name="produk_populer">Produk Populer</string>
+    <string name="kategori">Kategori</string>
+    <string name="tips_berkebun">Tips Berkebun</string>
+    <string name="aktivitas">Aktivitas</string>
+    <string name="pantau_semua_pesananmu_disin">Pantau semua pesananmu disin</string>
+    <string name="tomat_buncis_apel_dll">Tomat, Buncis, Apel, dll...</string>
+    <string name="pantau_tanamanmu">Pantau Tanamanmu</string>
+    <string name="kami_menjamin_kualitas_terbaik">Kami menjamin kualitas terbaik</string>
+    <string name="ayo_mulai">Ayo mulai bercocok tanam!</string>
+    <string name="produk_paling_laris_terbaik_dari_kami">Produk paling laris terbaik dari kami</string>
+    <string name="tips_dan_trik_terkini_untuk_kebun_anda">Tips dan Trik Terkini untuk Kebun Anda</string>
+    <string name="produktif">Produktif</string>
+    <string name="outdoor">Outdoor</string>
+    <string name="strawberry_starter">Strawberry Starter</string>
+    <string name="beli">Beli</string>
+    <string name="deskripsi_tanaman">Stroberi adalah spesies hibrida yang tumbuh luas dari genus Fragaria, yang dibudidayakan di seluruh dunia untuk buahnya. Buah ini dihargai luas karena aroma khasnya, warna merah cerah, tekstur juicy, dan rasa manis. Ini dikonsumsi dalam jumlah besar, baik dalam makanan segar atau olahan seperti selai, jus, pai, es krim, milkshake, dan cokelat. Perasa dan aroma stroberi buatan juga banyak digunakan dalam produk-produk seperti permen, sabun, lip gloss, parfum, dan banyak lainnya.</string>
+    <string name="deskripsi_alat">Sekop premium berbahan dasar besi diseluruh bagiannya. Bahan yang ringan ditambah dengan grip berbahan karet membuat sekop ini nyaman dipegang ketika digunakan.  Tersedia dalam warna hitam, hijau, biru, dan kuning. Masukkan warna yang diinginkan ketika checkout, jika tidak akan dikirimkan warna random.</string>
+    <string name="sekop_berkebun">Sekop Berkebun</string>
+    <string name="bibit_tomat_premium">Bibit Tomat Premium</string>
+    <string name="deskripsi_bibit">Paket ini berisi biji tomat Beefsteak. Benih ini akan menghasilkan Tomat besar dan lezat dalam 90-100 hari setelah tanam. Untuk tanaman awal, mulailah benih di dalam ruangan dalam pot selama 5-7 minggu sebelum tanam di luar ruangan.</string>
+    <string name="tentang_bibit">"Tomat (Solanum lycopersicum syn. Lycopersicum  esculentum) adalah tumbuhan dari keluarga  Solanaceae, tumbuhan asli Amerika Tengah dan  Selatan, dari Meksiko sampai Peru. Tomat  merupakan tumbuhan siklus hidup singkat, dapat  tumbuh setinggi 1 sampai 3 meter. Tumbuhan ini  memiliki buah berawarna hijau, kuning, dan merah  yang biasa dipakai sebagai sayur dalam masakan  atau dimakan secara langsung tanpa diproses.  Tomat memiliki batang dan daun yang tidak dapat  dikonsumsi karena masih sekeluarga dengan  kentang dan Terung yang mengadung Alkaloid. "</string>
+    <string name="jasa">Jasa</string>
+    <string name="kemangi">Kemangi</string>
+    <string name="rincian_pesanan">Rincian Pesanan</string>
+    <string name="alamat_pengiriman">Alamat Pengiriman</string>
+    <string name="salin">Salin</string>
+    <string name="lacak">Lacak</string>
+    <string name="status_pengiriman">Status Pengiriman</string>
+    <string name="produk_dibeli">Produk Dibeli</string>
+    <string name="subtotal_produk">Subtotal Produk</string>
+    <string name="rp0">Rp0</string>
+    <string name="pengiriman">Pengiriman</string>
+    <string name="total">Total</string>
+    <string name="pesanan_diterima">Pesanan diterima</string>
+</resources>

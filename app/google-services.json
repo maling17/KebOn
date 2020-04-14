@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "796428396663",
+    "firebase_url": "https://kebon-4da88.firebaseio.com",
+    "project_id": "kebon-4da88",
+    "storage_bucket": "kebon-4da88.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796428396663:android:59ed34259af4f3ab017e72",
+        "android_client_info": {
+          "package_name": "com.example.kebon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796428396663-leqai6p9naiso4566lb51oaq02tc2jl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWJtXvS_cOhm-4EbkZav4G7GjI4F0jNTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796428396663-leqai6p9naiso4566lb51oaq02tc2jl8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
