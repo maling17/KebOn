@@ -50,4 +50,19 @@
     <string name="pengiriman">Pengiriman</string>
     <string name="total">Total</string>
     <string name="pesanan_diterima">Pesanan diterima</string>
+    <string name="profil_saya">Profile Saya</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="alamat">Alamat</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="tgl_lahir">Tanggal Lahir</string>
+    <string name="simpan">Simpan</string>
+    <string name="tambah_alamat_baru">Tambah Alamat Baru</string>
+    <string name="daftar_alamat">Daftar Alamat</string>
+    <string name="edit_alamat">Edit Alamat</string>
+    <string name="provinsi">Provinsi</string>
+    <string name="kota">Kota/Kabupaten</string>
+    <string name="kecamatan">Kecamatan</string>
+    <string name="kode_pos">Kode Pos</string>
+    <string name="alamat_lengkap">Alamat Lengkap</string>
 </resources>

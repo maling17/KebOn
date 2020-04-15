@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProfileActivity">
+    tools:context=".EditAlamatActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="22dp"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="@string/profil_saya"
+                    android:text="@string/edit_alamat"
                     android:textColor="@color/colorGreen"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -92,39 +92,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik"
-                        android:text="@string/username"
-                        android:textColor="@color/colorGreen"
-                        android:textSize="16sp" />
-
-                    <EditText
-                        android:id="@+id/et_username_edit_profile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/colorCream"
-                        android:drawableEnd="@drawable/ic_edit"
-                        android:importantForAutofill="no"
-                        android:inputType="textPersonName"
-                        android:textColor="@color/colorBlack" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/rubik"
                         android:text="@string/nomor_telepon"
                         android:textColor="@color/colorGreen"
                         android:textSize="16sp" />
 
                     <EditText
-                        android:id="@+id/et_nmr_tlp_edit_profile"
+                        android:id="@+id/et_nmr_tlp_edit_alamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -146,12 +119,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik"
-                        android:text="@string/alamat"
+                        android:text="@string/provinsi"
                         android:textColor="@color/colorGreen"
                         android:textSize="16sp" />
 
                     <EditText
-                        android:id="@+id/et_alamat_edit_profile"
+                        android:id="@+id/et_provinsi_edit_alamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -173,12 +146,39 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik"
-                        android:text="@string/email"
+                        android:text="@string/kota"
                         android:textColor="@color/colorGreen"
                         android:textSize="16sp" />
 
                     <EditText
-                        android:id="@+id/et_email_edit_profile"
+                        android:id="@+id/et_kota_edit_alamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/colorCream"
+                        android:drawableEnd="@drawable/ic_edit"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik"
+                        android:text="@string/kecamatan"
+                        android:textColor="@color/colorGreen"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/et_kecamatan_edit_alamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -200,19 +200,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik"
-                        android:text="@string/jenis_kelamin"
+                        android:text="@string/kode_pos"
                         android:textColor="@color/colorGreen"
                         android:textSize="16sp" />
 
                     <EditText
-                        android:id="@+id/et_jelkel_edit_profile"
+                        android:id="@+id/et_kodePos_edit_alamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:backgroundTint="@color/colorCream"
                         android:drawableEnd="@drawable/ic_edit"
                         android:importantForAutofill="no"
-                        android:inputType="text"
+                        android:inputType="textPostalAddress"
                         android:textColor="@color/colorBlack" />
 
                 </LinearLayout>
@@ -227,30 +227,30 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik"
-                        android:text="@string/tgl_lahir"
+                        android:text="@string/alamat_lengkap"
                         android:textColor="@color/colorGreen"
                         android:textSize="16sp" />
 
                     <EditText
-                        android:id="@+id/et_tgl_lahir_edit_profile"
+                        android:id="@+id/et_alamat_edit_alamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:backgroundTint="@color/colorCream"
                         android:drawableEnd="@drawable/ic_edit"
                         android:importantForAutofill="no"
-                        android:inputType="date"
+                        android:inputType="text"
                         android:textColor="@color/colorBlack" />
 
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btn_simpan_edit_profile"
+                    android:id="@+id/btn_simpan_edit_alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="80dp"
                     android:background="@drawable/btn_round_orange"
-                    android:fontFamily="@font/rubik_me dium"
+                    android:fontFamily="@font/rubik_medium"
                     android:text="@string/simpan"
                     android:textColor="@color/colorCream"
                     android:textSize="18sp" />
