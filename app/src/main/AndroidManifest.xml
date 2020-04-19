@@ -9,7 +9,12 @@
         android:roundIcon="@drawable/logo_kres"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditAlamatActivity"></activity>
+        <activity android:name=".RiwayatProfileActivity" />
+        <activity android:name=".detail.DetailPanenActivity" />
+        <activity android:name=".ProdukFavoriteActivity" />
+        <activity android:name=".detail.DetailLacakPesananActivity" />
+        <activity android:name=".detail.DetailJasaActivity" />
+        <activity android:name=".EditAlamatActivity" />
         <activity android:name=".DaftarAlamatActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".detail.DetailActivityActivity">
