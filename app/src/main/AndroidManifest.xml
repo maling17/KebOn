@@ -9,6 +9,10 @@
         android:roundIcon="@drawable/logo_kres"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".KonfirmasiActivity"></activity>
+        <activity android:name=".ListOpsiPengirimanActivity" />
+        <activity android:name=".CheckoutJasaActivity" />
+        <activity android:name=".CheckoutBeliActivity" />
         <activity android:name=".RiwayatProfileActivity" />
         <activity android:name=".detail.DetailPanenActivity" />
         <activity android:name=".ProdukFavoriteActivity" />

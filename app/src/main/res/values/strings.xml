@@ -88,7 +88,6 @@
     <string name="tambah_durasi_perawatan">Tambah Durasi Perawatan</string>
     <string name="ubah">Ubah</string>
     <string name="reguler">Reguler</string>
-    <string name="opsi_pengiriman">Opsi Pengiriman</string>
     <string name="subtotal_tambahan_perawatan">Subtotal Tambahan Perawatan</string>
     <string name="subtotal_pengiriman">Subtotal Pengiriman</string>
     <string name="payment_summary">Payment Summary</string>
@@ -96,4 +95,16 @@
     <string name="lanjutkan">Lanjutkan</string>
     <string name="riwayat_pesanan">Riwayat Pesanan</string>
     <string name="daftar_produk_yang_pernah_kamu_pesan">Daftar Produk yang Pernah Kamu Pesan</string>
+    <string name="checkout">Checkout</string>
+    <string name="durasi_perawatan">Durasi Perawatan</string>
+    <string name="sub_total_perawatan">Sub Total Perawatan</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="opsi_pengiriman">Opsi Pengiriman</string>
+    <string name="pembayaran">Pembayaran</string>
+    <string name="deskripsi_pembayaran">Tolong selesaikan pembayaran dengan cara transfer sejumlah total pembayaran ke salah satu nomor rekening di bawah ini</string>
+    <string name="no_rek">1640002173609</string>
+    <string name="mandiri">Mandiri</string>
+    <string name="adytia_kresna_farisi">Adytia Kresna Farisi</string>
+    <string name="saya_sudah_bayar">Saya Sudah Bayar</string>
+    <string name="sudah_bayar">Jika sudah melakukan pembayaran, harap klik tombol  \"SAYA SUDAH BAYAR\" agar admin kami segera  mengkonfirmasi pesanan Anda.</string>
 </resources>

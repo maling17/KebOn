@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".detail.DetailPanenActivity">
+    tools:context=".CheckoutBeliActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="22dp"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="@string/checkout_panen"
+                    android:text="@string/checkout"
                     android:textColor="@color/colorGreen"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -67,7 +67,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_ubah_alamat_pengiriman"
+                    android:id="@+id/tv_ubah_alamat_pengiriman_checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik"
@@ -78,7 +78,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_nama_detail_panen"
+                    android:id="@+id/tv_nama_detail_checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -91,7 +91,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
                 <TextView
-                    android:id="@+id/tv_nmr_detail_panen"
+                    android:id="@+id/tv_nmr_detail_checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -101,10 +101,10 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_nama_detail_panen" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nama_detail_checkout" />
 
                 <TextView
-                    android:id="@+id/tv_alamat_detail_panen"
+                    android:id="@+id/tv_alamat_detail_checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -114,7 +114,7 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_nmr_detail_panen" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nmr_detail_checkout" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -142,14 +142,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="@string/produk_dipanen"
+                    android:text="@string/produk_dibeli"
                     android:textColor="@color/colorGreen"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_produk_panen"
+                    android:id="@+id/rv_produk_checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -169,38 +169,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/constraintLayout10" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view8">
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/rubik_medium"
-                    android:text="@string/tambah_durasi_perawatan"
-                    android:textColor="@color/colorGreen"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_durasi_produk"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <View
                 android:id="@+id/view9"
                 android:layout_width="match_parent"
@@ -208,7 +176,7 @@
                 android:background="@color/colorGray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraintLayout11" />
+                app:layout_constraintTop_toBottomOf="@id/constraintLayout10" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout12"
@@ -231,7 +199,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_ubah_detail_panen"
+                    android:id="@+id/tv_ubah_pengiriman_checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik"
@@ -255,7 +223,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
                 <TextView
-                    android:id="@+id/tv_nm_ekspedisi_detail_panen"
+                    android:id="@+id/tv_nm_ekspedisi_detail_checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -268,7 +236,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_jenis_pengiriman" />
 
                 <TextView
-                    android:id="@+id/tv_harga_ongkir_panen"
+                    android:id="@+id/tv_harga_ongkir_checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -378,7 +346,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
                 <TextView
-                    android:id="@+id/tv_total_panen"
+                    android:id="@+id/tv_total_checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -417,7 +385,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/tv_total_pembayaran_panen"
+                        android:id="@+id/tv_total_pembayaran_checkout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -429,7 +397,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btn_lanjut_detail_panen"
+                    android:id="@+id/btn_lanjut_detail_checkout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
