@@ -1,12 +1,13 @@
-package com.example.kebon
+package com.example.kebon.transaksi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.kebon.R
 
-class DaftarAlamatActivity : AppCompatActivity() {
+class CheckoutBeliActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_daftar_alamat)
+        setContentView(R.layout.activity_checkout_beli)
     }
 }

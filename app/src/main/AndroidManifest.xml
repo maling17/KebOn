@@ -9,34 +9,36 @@
         android:roundIcon="@drawable/logo_kres"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".KonfirmasiActivity"></activity>
-        <activity android:name=".ListOpsiPengirimanActivity" />
-        <activity android:name=".CheckoutJasaActivity" />
-        <activity android:name=".CheckoutBeliActivity" />
-        <activity android:name=".RiwayatProfileActivity" />
-        <activity android:name=".detail.DetailPanenActivity" />
-        <activity android:name=".ProdukFavoriteActivity" />
-        <activity android:name=".detail.DetailLacakPesananActivity" />
-        <activity android:name=".detail.DetailJasaActivity" />
-        <activity android:name=".EditAlamatActivity" />
-        <activity android:name=".DaftarAlamatActivity" />
-        <activity android:name=".EditProfileActivity" />
-        <activity android:name=".detail.DetailActivityActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".transaksi.KonfirmasiActivity" />
+        <activity android:name=".transaksi.ListOpsiPengirimanActivity" />
+        <activity android:name=".transaksi.CheckoutJasaActivity" />
+        <activity android:name=".transaksi.CheckoutBeliActivity" />
+        <activity android:name=".profile.RiwayatProfileActivity" />
+        <activity android:name=".detail.DetailPanenActivity" />
+        <activity android:name=".home.ProdukFavoriteActivity" />
+        <activity android:name=".detail.DetailLacakPesananActivity" />
+        <activity android:name=".detail.DetailJasaActivity" />
+        <activity android:name=".alamat.EditAlamatActivity" />
+        <activity android:name=".alamat.DaftarAlamatActivity" />
+        <activity android:name=".profile.EditProfileActivity" />
+        <activity android:name=".detail.DetailActivityActivity"></activity>
         <activity android:name=".detail.DetailTanamanActivity" />
         <activity android:name=".detail.DetailBenihActivity" />
         <activity android:name=".detail.DetailAlatActivity" />
         <activity android:name=".detail.DetailPackageActivity" />
-        <activity android:name=".TipsActivity" />
-        <activity android:name=".ProdukPopulerActivity" />
-        <activity android:name=".StarterPackActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".SignInActivity" />
+        <activity android:name=".home.TipsActivity" />
+        <activity android:name=".home.ProdukPopulerActivity" />
+        <activity android:name=".home.StarterPackActivity" />
+        <activity android:name=".sign.SignUpActivity" />
+        <activity android:name=".sign.SignInActivity">
+        </activity>
         <activity android:name=".MainActivity" />
 
         <meta-data

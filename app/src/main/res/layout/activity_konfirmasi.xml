@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="12dp"
-    tools:context=".KonfirmasiActivity">
+    tools:context=".transaksi.KonfirmasiActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout7"

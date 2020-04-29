@@ -1,14 +1,13 @@
-package com.example.kebon
+package com.example.kebon.alamat
 
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.kebon.R
 
-class SignUpActivity : AppCompatActivity() {
+class DaftarAlamatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
-
+        setContentView(R.layout.activity_daftar_alamat)
     }
 }

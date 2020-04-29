@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.kebon.ProdukPopulerActivity
+import com.example.kebon.home.ProdukPopulerActivity
 import com.example.kebon.R
-import com.example.kebon.StarterPackActivity
-import com.example.kebon.TipsActivity
+import com.example.kebon.home.StarterPackActivity
+import com.example.kebon.home.TipsActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**

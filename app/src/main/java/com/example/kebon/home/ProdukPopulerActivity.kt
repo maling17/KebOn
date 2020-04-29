@@ -1,7 +1,8 @@
-package com.example.kebon
+package com.example.kebon.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kebon.R
 import kotlinx.android.synthetic.main.activity_produk_populer.*
 
 class ProdukPopulerActivity : AppCompatActivity() {

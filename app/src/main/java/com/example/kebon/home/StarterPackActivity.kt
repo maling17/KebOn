@@ -1,7 +1,8 @@
-package com.example.kebon
+package com.example.kebon.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.kebon.R
 import kotlinx.android.synthetic.main.activity_starter_pack.*
 
 class StarterPackActivity : AppCompatActivity() {
