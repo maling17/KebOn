@@ -19,7 +19,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="66dp"
+        android:layout_height="56dp"
         android:background="@color/colorCream"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"

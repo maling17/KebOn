@@ -125,7 +125,7 @@ class SignInActivity : AppCompatActivity() {
                             .show()
 
                         preferences.setValues("nama", user.nm_lengkap.toString())
-                        preferences.setValues("user", user.username.toString())
+                        preferences.setValues("username", user.username.toString())
                         preferences.setValues("email", user.email.toString())
                         preferences.setValues("jk", user.jk.toString())
                         preferences.setValues("nmr_hp", user.nmr_hp.toString())

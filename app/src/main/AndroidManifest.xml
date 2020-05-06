@@ -9,6 +9,7 @@
         android:roundIcon="@drawable/logo_kres"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".detail.DetailArtikelActivity"></activity>
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +29,7 @@
         <activity android:name=".alamat.EditAlamatActivity" />
         <activity android:name=".alamat.DaftarAlamatActivity" />
         <activity android:name=".profile.EditProfileActivity" />
-        <activity android:name=".detail.DetailActivityActivity"></activity>
+        <activity android:name=".detail.DetailActivityActivity" />
         <activity android:name=".detail.DetailTanamanActivity" />
         <activity android:name=".detail.DetailBenihActivity" />
         <activity android:name=".detail.DetailAlatActivity" />
@@ -37,8 +38,7 @@
         <activity android:name=".home.ProdukPopulerActivity" />
         <activity android:name=".home.StarterPackActivity" />
         <activity android:name=".sign.SignUpActivity" />
-        <activity android:name=".sign.SignInActivity">
-        </activity>
+        <activity android:name=".sign.SignInActivity"></activity>
         <activity android:name=".MainActivity" />
 
         <meta-data

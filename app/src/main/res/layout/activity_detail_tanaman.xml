@@ -506,12 +506,16 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_isi_tanaman"
+                <TextView
+                    android:id="@+id/tv_isi_tanaman"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp" />
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:textAlignment="center"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/rubik"
+                    />
 
             </LinearLayout>
 

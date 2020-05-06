@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Produk(
+data class StarterProduk(
 
     var berat: String? = "",
     var cahaya: String? = "",

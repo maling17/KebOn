@@ -107,4 +107,11 @@
     <string name="adytia_kresna_farisi">Adytia Kresna Farisi</string>
     <string name="saya_sudah_bayar">Saya Sudah Bayar</string>
     <string name="sudah_bayar">Jika sudah melakukan pembayaran, harap klik tombol  \"SAYA SUDAH BAYAR\" agar admin kami segera  mengkonfirmasi pesanan Anda.</string>
+    <string name="nama_produk">Nama Produk</string>
+    <string name="judul_artikel">Judul Artikel</string>
+    <string name="author">Author</string>
+    <string name="tgl">dd-mm-yyyy</string>
+    <string name="isi_deskripsi">Isi Deskripsi</string>
+    <string name="apakah_ingin_langsung_bayar_langsung_ke_checkout_saja">Apakah ingin langsung bayar ? Langsung ke Checkout saja</string>
+    <string name="home">Home</string>
 </resources>
