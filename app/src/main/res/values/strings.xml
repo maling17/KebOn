@@ -114,4 +114,10 @@
     <string name="isi_deskripsi">Isi Deskripsi</string>
     <string name="apakah_ingin_langsung_bayar_langsung_ke_checkout_saja">Apakah ingin langsung bayar ? Langsung ke Checkout saja</string>
     <string name="home">Home</string>
+    <string name="keranjang_belanja">"Keranjang Belanja "</string>
+    <string name="semua_produk_yang_kamu_pilih">Semua Produk yang Kamu Pilih</string>
+    <string name="jumlah_beli">Jumlah Beli</string>
+    <string name="_1">1</string>
+    <string name="keranjang">Keranjang</string>
+    <string name="subtotal">Subtotal</string>
 </resources>

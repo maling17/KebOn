@@ -1,5 +1,6 @@
 package com.example.kebon.sign
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -26,6 +27,7 @@ class SignInActivity : AppCompatActivity() {
     lateinit var preferences: Preferences
     var status: Boolean = false
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorWhite"
     android:padding="24dp">
@@ -19,10 +19,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_medium"
-            android:text="@string/apakah_ingin_langsung_bayar_langsung_ke_checkout_saja"
-            android:textAlignment="center"
+            android:gravity="center"
+            android:text="@string/jumlah_beli"
             android:textColor="@color/colorBlack"
             android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/btn_min"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_btn_min" />
+
+            <TextView
+                android:id="@+id/tv_jumlah_beli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:fontFamily="@font/rubik_medium"
+                android:text="@string/_1"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/btn_plus"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_btn_plus" />
+
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +67,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_to_home"
+                android:id="@+id/btn_to_keranjang"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_round_cream"

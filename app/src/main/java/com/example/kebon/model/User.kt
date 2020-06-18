@@ -12,6 +12,7 @@ data class User(
     var username: String? = "",
     var nmr_hp: String? = "",
     var password: String? = "",
-    var tgl_lahir: String? = ""
+    var tgl_lahir: String? = "",
+    var status: String? = ""
 
 ) : Parcelable

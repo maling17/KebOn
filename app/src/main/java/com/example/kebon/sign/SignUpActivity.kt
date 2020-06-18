@@ -1,5 +1,6 @@
 package com.example.kebon.sign
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -20,6 +21,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var sUsername: String
     private lateinit var sPassword: String
     private lateinit var sEmail: String
+    private lateinit var statusUser: String
     private var status: Boolean = false
 
     private lateinit var mFirebaseDatabase: DatabaseReference
@@ -28,6 +30,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private lateinit var preferences: Preferences
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -42,6 +45,7 @@ class SignUpActivity : AppCompatActivity() {
             sUsername = et_username_signUp.text.toString()
             sPassword = et_password_signUp.text.toString()
             sEmail = et_email_signUp.text.toString()
+            statusUser="1"
 
             when {
                 sUsername == "" -> {
@@ -58,7 +62,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
                 else -> {
 
-                    saveUser(sUsername, sPassword, sEmail)
+                    saveUser(sUsername, sPassword, sEmail,statusUser)
 
                 }
             }
@@ -66,9 +70,9 @@ class SignUpActivity : AppCompatActivity() {
 
         et_password_signUp.setOnTouchListener(View.OnTouchListener { v, event ->
 
-            val DRAWABLE_RIGHT = 2
+            val right = 2
             if (event.action == MotionEvent.ACTION_UP) {
-                if (event.rawX >= et_password_signUp.right - et_password_signUp.compoundDrawables[DRAWABLE_RIGHT].bounds.width()
+                if (event.rawX >= et_password_signUp.right - et_password_signUp.compoundDrawables[right].bounds.width()
                 ) {
                     if (!status) {
                         status = true
@@ -125,11 +129,12 @@ class SignUpActivity : AppCompatActivity() {
                 if (user == null) {
 
                     mFirebaseDatabase.child(username).setValue(data)
+                    val status="1"
 
                     preferences.setValues("nama", data.password.toString())
                     preferences.setValues("user", data.username.toString())
                     preferences.setValues("email", data.email.toString())
-                    preferences.setValues("status", "1")
+                    preferences.setValues("status", status)
                     progressDialog.dismiss()
 
                     val intent = Intent(
@@ -154,12 +159,13 @@ class SignUpActivity : AppCompatActivity() {
         })
     }
 
-    private fun saveUser(sUsername: String, sPassword: String, sEmail: String) {
+    private fun saveUser(sUsername: String, sPassword: String, sEmail: String,statusUser:String) {
 
         val user = User()
         user.email = sEmail
         user.username = sUsername
         user.password = sPassword
+        user.status = statusUser
 
         checkingUsername(sUsername, user)
 

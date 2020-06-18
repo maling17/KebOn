@@ -19,6 +19,7 @@ import com.example.kebon.home.TipsActivity
 import com.example.kebon.model.Artikel
 import com.example.kebon.model.Produk
 import com.example.kebon.model.StarterProduk
+import com.example.kebon.transaksi.KeranjangActivity
 import com.example.kebon.utils.Preferences
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -33,7 +34,6 @@ class HomeFragment : Fragment() {
     private var dataList = ArrayList<Produk>()
     private var dataListArtikel = ArrayList<Artikel>()
     var produk2: String? = ""
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,6 +69,14 @@ class HomeFragment : Fragment() {
             val intent = Intent(context, TipsActivity::class.java)
             startActivity(intent)
         }
+        btn_keranjang_home.setOnClickListener {
+            val username: String = tv_nama_home.text.toString()
+            val intent = Intent(context, KeranjangActivity::class.java)
+            preferences.setValues("username_home", username)
+
+            startActivity(intent)
+        }
+
 
         rv_starter_pack.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -132,8 +140,9 @@ class HomeFragment : Fragment() {
 
                     produk2 = "produk"
                     val indexArrayList = dataList.indexOf(it) //mengindex dulu isi yang ada di array
-                    val filter =
-                        dataList[indexArrayList].kategori //mengfilter dan mengambil value dari kategori
+                  val filter =
+                        dataList[indexArrayList].kategori.toString() //mengfilter dan mengambil value dari kategori
+
 
                     if (filter == "Alat") {
                         val intent =
