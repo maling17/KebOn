@@ -25,6 +25,7 @@ class BeliKeranjangFragment : Fragment() {
     private lateinit var mFirebaseInstance: FirebaseDatabase
     private lateinit var mDatabase: DatabaseReference
     private lateinit var preferences: Preferences
+    private var total=""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,14 +63,13 @@ class BeliKeranjangFragment : Fragment() {
 
                         val transaksi = getdataSnapshot.getValue(Transaksi::class.java)
                         transaksiList.add(transaksi!!)
-                        val total= (transaksiList.sumBy { it.subtotal_produk_beli?.toInt()!! }).toString()
-                        tv_total_keranjang.text="Rp$total"
+                        total= (transaksiList.sumBy { it.subtotal_produk_beli?.toInt()!! }).toString()
 
                     }
 
+                    tv_total_keranjang.text="Rp$total"
+
                     rv_beli_keranjang.adapter = KeranjangAdapter(transaksiList){
-
-
 
                     }
                 } else {

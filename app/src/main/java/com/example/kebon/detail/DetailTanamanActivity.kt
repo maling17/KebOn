@@ -256,7 +256,7 @@ class DetailTanamanActivity : AppCompatActivity() {
         jasa.id_produk = id_produk
         jasa.jumlah_jasa = totaljasa.toString()
         jasa.status_jasa = "1"
-        val key = mFirebaseDatabase.child(getUsername).child("Transaksi").child("Jasa").push().key
+        val key = mFirebaseDatabase.child(getUsername).child("Jasa").push().key
         jasa.id_jasa = key
         jasa.subtotal_produk_jasa = totalHargaProduk.toString()
         jasa.tgl_transaksi = dateNow
@@ -264,7 +264,7 @@ class DetailTanamanActivity : AppCompatActivity() {
         jasa.url_gambar = url_gambar
         jasa.nm_produk = nama_produk
 
-        mFirebaseDatabase.child(getUsername).child("Transaksi").child("Jasa").child(key.toString())
+        mFirebaseDatabase.child(getUsername).child("Jasa").child(key.toString())
             .setValue(jasa)
 
     }
