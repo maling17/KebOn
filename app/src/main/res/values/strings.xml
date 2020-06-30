@@ -9,6 +9,21 @@
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Already have an account? LOG IN</string>
 
+    <string-array name="bulan">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="starter_pack">Starter Pack</string>
@@ -120,4 +135,21 @@
     <string name="_1">1</string>
     <string name="keranjang">Keranjang</string>
     <string name="subtotal">Subtotal</string>
+    <string name="_0">0</string>
+    <string name="jika_menambahkan_jumlah_beli_mohon_untuk_swipe_down_agar_total_terupdate">Jika menambahkan jumlah beli mohon untuk swipe down agar total terupdate</string>
+    <string name="instant">Instant</string>
+    <string name="rp30000">Rp30000</string>
+    <string name="durasi_pengiriman_selama_1_2_hari">Durasi pengiriman selama 1-2 hari</string>
+    <string name="durasi_pengiriman_selama_3_5_hari">Durasi Pengiriman selama 3 - 5 hari</string>
+    <string name="rp15000">Rp15000</string>
+    <string name="hemat">Hemat</string>
+    <string name="durasi_pengiriman_selama_5_6_hari">Durasi Pengiriman selama 5-6 hari</string>
+    <string name="rp7500">Rp7500</string>
+    <string name="pilih_alamat">Pilih Alamat</string>
+    <string name="nama_alamat">Nama Alamat</string>
+    <string name="tolong_selesaikan_pembayaran_dengan_cara_transfer_sejumlah_total_pembayaran_ke_salah_satu_nomor_rekening_di_bawah_ini">Tolong selesaikan pembayaran dengan cara transfer sejumlah total pembayaran ke nomor rekening di bawah ini</string>
+    <string name="_1640002173609">1640002173609</string>
+    <string name="jika_sudah_melakukan_pembayaran_harap_klik_tombol_saya_sudah_bayar_agar_admin_kami_segera_mengkonfirmasi_pesanan_anda">Jika sudah melakukan pembayaran, harap klik tombol SAYA SUDAH BAYAR agar admin kami segera mengkonfirmasi pesanan Anda.</string>
+    <string name="bulan">Bulan</string>
+    <string name="hari">Hari</string>
 </resources>

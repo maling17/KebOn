@@ -61,7 +61,10 @@ class KeranjangAdapter(
 
                 //jika kuantitas kurang dari 1 maka dialog akan cancel
                 if (totaltransaksi == 1) {
-                    btnMin.isClickable = false
+                    mDatabase.child("Users")
+                        .child(username)
+                        .child("Transaksi")
+                        .child(getIdTransaksi!!).removeValue()
                 } else {
 
                     val transaksi = Transaksi()

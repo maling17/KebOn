@@ -70,7 +70,7 @@ class DetailTanamanActivity : AppCompatActivity() {
         id_produk = dataProduk.id_produk
         tv_nama_detail_tanaman.text = dataProduk.nm_produk
         tv_berat_detail_tanaman.text = dataProduk.berat
-        tv_harga_detail_tanaman.text = dataProduk.harga_jasa
+        tv_harga_detail_tanaman.text = dataProduk.harga_beli
         tv_cahaya_detail_tanaman.text = dataProduk.cahaya
         tv_deskripsi_detail_tanaman.text = dataProduk.deskripsi
         tv_harga_jasa_detail_tanaman.text = dataProduk.harga_jasa
@@ -247,7 +247,7 @@ class DetailTanamanActivity : AppCompatActivity() {
         id_produk = dataProduk.id_produk
 
         // total harga untuk subtotal produk jasa
-        val totalHargaProduk = totaljasa * hargaJasaProduk
+        val totalHargaProduk = totaljasa * hargaBeliProduk
 
         val currentDate = LocalDate.now()
         dateNow = currentDate.toString()
@@ -259,6 +259,7 @@ class DetailTanamanActivity : AppCompatActivity() {
         val key = mFirebaseDatabase.child(getUsername).child("Jasa").push().key
         jasa.id_jasa = key
         jasa.subtotal_produk_jasa = totalHargaProduk.toString()
+        jasa.subtotal_perawatan = hargaJasaProduk.toString()
         jasa.tgl_transaksi = dateNow
         jasa.kategori = "jasa"
         jasa.url_gambar = url_gambar

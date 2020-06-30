@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".alamat.DaftarAlamatActivity">
+    tools:context=".alamat.PilihAlamatActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
-                    android:id="@+id/btn_back_daftar_alamat"
+                    android:id="@+id/btn_back_pilih_alamat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="22dp"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="@string/daftar_alamat"
+                    android:text="@string/pilih_alamat"
                     android:textColor="@color/colorGreen"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -50,26 +50,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="24dp"
+                android:paddingHorizontal="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_daftar_alamat"
+                    android:id="@+id/rv_pilih_alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="30dp"/>
 
                 <Button
-                    android:id="@+id/btn_tambah_daftar_alamat"
+                    android:id="@+id/btn__simpan_pilih_alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="80dp"
                     android:background="@drawable/btn_round_orange"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="@string/tambah_alamat_baru"
+                    android:text="@string/simpan"
                     android:textColor="@color/colorCream"
                     android:textSize="18sp" />
             </LinearLayout>

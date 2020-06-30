@@ -49,6 +49,10 @@ class HomeFragment : Fragment() {
         preferences = Preferences(activity!!.applicationContext)
         mDatabase = FirebaseDatabase.getInstance().reference
 
+        dataListStarter.clear()
+        dataList.clear()
+        dataListArtikel.clear()
+
         getDataStarterPack()
         getDataProduk()
         getDataArtikel()
@@ -95,7 +99,6 @@ class HomeFragment : Fragment() {
         mDatabaseStarter.addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(p0: DataSnapshot) {
-                if (p0.exists()) {
 
                     dataList.clear()
 
@@ -105,7 +108,6 @@ class HomeFragment : Fragment() {
                         dataListStarter.add(produk!!)
 
                     }
-                }
 
                 rv_starter_pack.adapter = StarterpackAdapter(dataListStarter) {
                     produk2 = "starter"
@@ -216,5 +218,9 @@ class HomeFragment : Fragment() {
                 Toast.makeText(context, "" + p0.message, Toast.LENGTH_LONG).show()
             }
         })
+    }
+    private fun resetArrayList() {
+
+
     }
 }
