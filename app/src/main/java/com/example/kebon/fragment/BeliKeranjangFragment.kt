@@ -1,5 +1,6 @@
 package com.example.kebon.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -11,11 +12,9 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kebon.MainActivity
 import com.example.kebon.R
 import com.example.kebon.adapter.KeranjangAdapter
-import com.example.kebon.model.Transaksi
-import com.example.kebon.sign.SignInActivity
+import com.example.kebon.model.Detail_Transaksi
 import com.example.kebon.transaksi.CheckoutBeliActivity
 import com.example.kebon.utils.Preferences
 import com.google.firebase.database.*
@@ -23,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_beli_keranjang.*
 
 
 class BeliKeranjangFragment : Fragment() {
-    private var transaksiList = ArrayList<Transaksi>()
+    private var transaksiList = ArrayList<Detail_Transaksi>()
     private var getUsername = ""
 
     private lateinit var mFirebaseDatabase: DatabaseReference
@@ -31,6 +30,7 @@ class BeliKeranjangFragment : Fragment() {
     private lateinit var mDatabase: DatabaseReference
     private lateinit var preferences: Preferences
     private var total = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,10 +50,11 @@ class BeliKeranjangFragment : Fragment() {
         preferences = Preferences(activity!!.applicationContext)
         getUsername = preferences.getValues("username").toString()
 
+
         getDataTransaksi()
 
         btn_checkout_beli.setOnClickListener {
-            val intent=Intent(context, CheckoutBeliActivity::class.java)
+            val intent = Intent(context, CheckoutBeliActivity::class.java)
             startActivity(intent)
         }
 
@@ -73,30 +74,74 @@ class BeliKeranjangFragment : Fragment() {
     }
 
     private fun getDataTransaksi() {
-
-        val mDatabaseStarter =
+        var getId = ""
+        val mDatabaseIdTransaksi =
             mDatabase.child("Users").child(getUsername).child("Transaksi")
-                .orderByChild("status_beli").equalTo("1")
+                .orderByChild("status_beli").equalTo("1").limitToFirst(1)
 
-        mDatabaseStarter.addListenerForSingleValueEvent(object : ValueEventListener {
+        mDatabaseIdTransaksi.addListenerForSingleValueEvent(object : ValueEventListener {
 
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(p0: DataSnapshot) {
+
                 if (p0.exists()) {
 
                     for (getdataSnapshot in p0.children) {
 
-                        val transaksi = getdataSnapshot.getValue(Transaksi::class.java)
-                        transaksiList.add(transaksi!!)
-                        total =
-                            (transaksiList.sumBy { it.subtotal_produk_beli?.toInt()!! }).toString()
+                        getId = getdataSnapshot.child("id_transaksi").value.toString()
 
-                    }
+                        // request data di detail transaksi
+                        val mDatabaseStarter =
+                            mDatabase.child("Users").child(getUsername).child("Transaksi")
+                                .child(getId).child("Detail_Transaksi")
 
-                    preferences.setValues("totalHargaProdukBeli",total)
-                    tv_total_keranjang.text = "Rp$total"
+                        mDatabaseStarter.addListenerForSingleValueEvent(object :
+                            ValueEventListener {
 
-                    rv_beli_keranjang.adapter = KeranjangAdapter(transaksiList) {
+                            @SuppressLint("SetTextI18n")
+                            @RequiresApi(Build.VERSION_CODES.O)
+                            override fun onDataChange(p0: DataSnapshot) {
+
+                                if (p0.exists()) {
+
+                                    for (getdataSnapshot in p0.children) {
+
+                                        val transaksi =
+                                            getdataSnapshot.getValue(Detail_Transaksi::class.java)
+                                        transaksiList.add(transaksi!!)
+                                        total =
+                                            (transaksiList.sumBy { it.harga_produk?.toInt()!! }).toString()
+                                        Toast.makeText(
+                                            context,
+                                            transaksiList[0].nm_produk,
+                                            Toast.LENGTH_LONG
+                                        )
+                                            .show()
+                                    }
+
+                                    preferences.setValues("totalHargaProdukBeli", total)
+                                    tv_total_keranjang.text = "Rp$total"
+
+                                        rv_beli_keranjang.adapter = KeranjangAdapter(transaksiList) {
+                                        }
+
+                                } else {
+                                    Toast.makeText(
+                                        context,
+                                        "Data Tidak Data Yang INI",
+                                        Toast.LENGTH_SHORT
+                                    )
+                                        .show()
+                                }
+
+                            }
+
+                            override fun onCancelled(p0: DatabaseError) {
+                                Toast.makeText(context, "" + p0.message, Toast.LENGTH_LONG).show()
+                            }
+
+                        })
+
                     }
 
                 } else {
@@ -111,5 +156,8 @@ class BeliKeranjangFragment : Fragment() {
             }
 
         })
+
+
     }
+
 }

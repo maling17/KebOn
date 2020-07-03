@@ -12,10 +12,9 @@ class Transaksi (
     var subtotal_pengiriman:String?="",
     var total_biaya:String?="",
     var tgl_transaksi:String?="",
-    var jumlah_beli:String?="",
     var status_beli:String?="",
-    var id_produk:String?="",
-    var nm_produk:String?="",
-    var url_gambar:String?="",
-    var kategori:String?=""
+    var nm_alamat:String?="",
+    var nmr_telp:String?="",
+    var alamat_lengkap:String?="",
+    var username:String?=""
 ):Parcelable

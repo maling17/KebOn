@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kebon.R
+import com.example.kebon.model.Detail_Jasa
 import com.example.kebon.model.Jasa
 import com.example.kebon.utils.Preferences
 import com.google.firebase.database.DatabaseReference
@@ -16,8 +17,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
 class KeranjangJasaAdapter(
-    private var data: List<Jasa>,
-    private val listener: (Jasa) -> Unit
+    private var data: List<Detail_Jasa>,
+    private val listener: (Detail_Jasa) -> Unit
 ) : RecyclerView.Adapter<KeranjangJasaAdapter.LeagueViewHolder>() {
     lateinit var ContextAdapter: Context
     var total: Int = 0
@@ -36,8 +37,8 @@ class KeranjangJasaAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bindItem(
-            data: Jasa,
-            listener: (Jasa) -> Unit,
+            data: Detail_Jasa,
+            listener: (Detail_Jasa) -> Unit,
             context: Context,
             position: Int
         ) {
@@ -47,15 +48,16 @@ class KeranjangJasaAdapter(
             username = preferences.getValues("username").toString()
 
             tvJudul.text = data.nm_produk
-            tvHarga.text = data.subtotal_produk_jasa.toString()
+            tvHarga.text = data.harga_beli.toString()
             tvtotal.text = data.jumlah_jasa.toString()
             Picasso.get().load(data.url_gambar).into(ivPhoto)
 
             var totaljasa: Int = data.jumlah_jasa?.toInt()!!
-            val hargaProduk = data.subtotal_produk_jasa?.toInt()!!
+            val hargaProduk = data.harga_beli?.toInt()!!
             var hargaSementara = hargaProduk
             val baseHargaProduk: Int = hargaProduk / totaljasa
-            val getIdjasa = data.id_jasa
+            val getIdjasa = preferences.getValues("id_jasa")
+            val getIdProduk=data.id_produk.toString()
 
             btnMin.setOnClickListener {
 
@@ -64,7 +66,7 @@ class KeranjangJasaAdapter(
                     btnMin.isClickable = false
                 } else {
 
-                    val jasa = Jasa()
+                    val detailJasa = Detail_Jasa()
                     btnMin.isClickable = true
                     totaljasa -= 1
                     tvtotal.text = "$totaljasa"
@@ -72,29 +74,31 @@ class KeranjangJasaAdapter(
                     hargaSementara = totalHargaMin
                     tvHarga.text = totalHargaMin.toString()
 
-                    jasa.jumlah_jasa = totaljasa.toString()
-                    jasa.subtotal_produk_jasa = hargaSementara.toString()
-
+                    detailJasa.jumlah_jasa = totaljasa.toString()
                     mDatabase.child("Users")
                         .child(username)
                         .child("Jasa")
                         .child(getIdjasa!!)
+                        .child("Detail_jasa")
+                        .child(getIdProduk)
                         .child("jumlah_jasa")
-                        .setValue(jasa.jumlah_jasa)
+                        .setValue(detailJasa.jumlah_jasa)
 
                     mDatabase.child("Users")
                         .child(username)
                         .child("Jasa")
                         .child(getIdjasa)
+                        .child("Detail_jasa")
+                        .child(getIdProduk)
                         .child("subtotal_produk_jasa")
-                        .setValue(jasa.subtotal_produk_jasa)
+                        .setValue(detailJasa.harga_jasa)
 
                 }
 
             }
 
             btnPlus.setOnClickListener {
-                val jasa = Jasa()
+                val detailJasa = Detail_Jasa()
                 btnMin.isClickable = true
                 totaljasa += 1
                 tvtotal.text = "$totaljasa"
@@ -102,22 +106,26 @@ class KeranjangJasaAdapter(
                 hargaSementara = totalHargaPlus
                 tvHarga.text = totalHargaPlus.toString()
 
-                jasa.jumlah_jasa = totaljasa.toString()
-                jasa.subtotal_produk_jasa = hargaSementara.toString()
+                detailJasa.jumlah_jasa = totaljasa.toString()
+                detailJasa.harga_jasa = hargaSementara.toString()
 
                 mDatabase.child("Users")
                     .child(username)
                     .child("Jasa")
                     .child(getIdjasa!!)
+                    .child("Detail_jasa")
+                    .child(getIdProduk)
                     .child("jumlah_jasa")
-                    .setValue(jasa.jumlah_jasa)
+                    .setValue(detailJasa.jumlah_jasa)
 
                 mDatabase.child("Users")
                     .child(username)
                     .child("Jasa")
                     .child(getIdjasa)
+                    .child("Detail_jasa")
+                    .child(getIdProduk)
                     .child("subtotal_produk_jasa")
-                    .setValue(jasa.subtotal_produk_jasa)
+                    .setValue(detailJasa.harga_jasa)
             }
 
             itemView.setOnClickListener {

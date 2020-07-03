@@ -15,15 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kebon.PembayaranActivity
 import com.example.kebon.R
 import com.example.kebon.adapter.CheckoutJasaAdapter
-import com.example.kebon.model.Jasa
+import com.example.kebon.model.Detail_Jasa
 import com.example.kebon.utils.Preferences
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_checkout_jasa.*
-import kotlinx.android.synthetic.main.fragment_jasa_keranjang.*
 
 class CheckoutJasaActivity : AppCompatActivity() {
 
-    private var jasaList = ArrayList<Jasa>()
+    private var jasaList = ArrayList<Detail_Jasa>()
     private var getUsername = ""
 
     private lateinit var mFirebaseDatabase: DatabaseReference
@@ -103,41 +102,87 @@ class CheckoutJasaActivity : AppCompatActivity() {
     }
 
     private fun getDataJasa() {
-        jasaList.clear()
-        val mDatabaseStarter =
+        var getId = ""
+        val mDatabaseIdTransaksi =
             mDatabase.child("Users").child(getUsername).child("Jasa")
-                .orderByChild("status_jasa").equalTo("1")
+                .orderByChild("status_jasa").equalTo("1").limitToFirst(1)
 
-        mDatabaseStarter.addListenerForSingleValueEvent(object : ValueEventListener {
+        mDatabaseIdTransaksi.addListenerForSingleValueEvent(object : ValueEventListener {
 
-            @SuppressLint("SetTextI18n")
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(p0: DataSnapshot) {
+
                 if (p0.exists()) {
 
                     for (getdataSnapshot in p0.children) {
 
-                        val jasa = getdataSnapshot.getValue(Jasa::class.java)
-                        jasaList.add(jasa!!)
-                        total =
-                            (jasaList.sumBy { it.subtotal_produk_jasa?.toInt()!! }).toString()
-                        totaljasa =
-                            (jasaList.sumBy { it.subtotal_perawatan?.toInt()!! }).toString()
+                        getId = getdataSnapshot.child("id_jasa").value.toString()
+
+                        // request data di detail transaksi
+                        val mDatabaseStarter =
+                            mDatabase.child("Users").child(getUsername).child("Jasa")
+                                .child(getId).child("Detail_Jasa")
+
+                        mDatabaseStarter.addListenerForSingleValueEvent(object :
+                            ValueEventListener {
+
+                            @SuppressLint("SetTextI18n")
+                            @RequiresApi(Build.VERSION_CODES.O)
+                            override fun onDataChange(p0: DataSnapshot) {
+
+                                if (p0.exists()) {
+
+                                    for (dataSnapshot in p0.children) {
+
+                                        val transaksi =
+                                            dataSnapshot.getValue(Detail_Jasa::class.java)
+                                        jasaList.add(transaksi!!)
+                                        total =
+                                            (jasaList.sumBy { it.harga_beli?.toInt()!! }).toString()
+                                        totaljasa =
+                                            (jasaList.sumBy { it.harga_jasa?.toInt()!! }).toString()
+
+                                    }
+
+                                    preferences.setValues("totalHargaProdukBeli", total)
+
+                                    tv_harga_produk_jasa.text = "Rp$total"
+                                    tv_total_produk_beli_rv_jasa.text = "Rp$total"
+
+                                    val totalHargaJasa = totaljasa.toInt() * getDurasi.toInt()
+                                    val totalSemua = total.toInt() + totalHargaJasa
+                                    tv_subtotal_perawatan_jasa.text = "Rp$totalHargaJasa"
+                                    tv_harga_perawatan.text = "Rp$totalHargaJasa"
+                                    tv_total_checkout_jasa.text = "Rp$totalSemua"
+                                    tv_total_pembayaran_checkout_jasa.text = "Rp$totalSemua"
+
+                                    rv_produk_checkout_jasa.adapter =
+                                        CheckoutJasaAdapter(jasaList) {
+                                        }
+
+                                } else {
+                                    Toast.makeText(
+                                        this@CheckoutJasaActivity,
+                                        "Data Tidak Data Yang INI",
+                                        Toast.LENGTH_SHORT
+                                    )
+                                        .show()
+                                }
+
+                            }
+
+                            override fun onCancelled(p0: DatabaseError) {
+                                Toast.makeText(
+                                    this@CheckoutJasaActivity,
+                                    "" + p0.message,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                        })
+
                     }
 
-                    tv_harga_produk_jasa.text = "Rp$total"
-                    tv_total_produk_beli_rv_jasa.text = "Rp$total"
-
-                    val totalHargaJasa = totaljasa.toInt() * getDurasi.toInt()
-                    val totalSemua = total.toInt() + totalHargaJasa
-                    tv_subtotal_perawatan_jasa.text = "Rp$totalHargaJasa"
-                    tv_harga_perawatan.text = "Rp$totalHargaJasa"
-                    tv_total_checkout_jasa.text = "Rp$totalSemua"
-                    tv_total_pembayaran_checkout_jasa.text = "Rp$totalSemua"
-
-                    rv_produk_checkout_jasa.adapter = CheckoutJasaAdapter(jasaList) {
-
-                    }
                 } else {
                     Toast.makeText(this@CheckoutJasaActivity, "Data Tidak Data", Toast.LENGTH_SHORT)
                         .show()
@@ -148,8 +193,12 @@ class CheckoutJasaActivity : AppCompatActivity() {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(this@CheckoutJasaActivity, "" + p0.message, Toast.LENGTH_LONG).show()
             }
+
         })
+
+
     }
+
 
     @SuppressLint("SetTextI18n")
     private fun buttonPopUpLanjutJasa() {
@@ -177,39 +226,113 @@ class CheckoutJasaActivity : AppCompatActivity() {
 
     private fun updateDataJasa() {
 
-        val ambilDurasi = getDurasi
-
+        var getId = ""
         val mDatabaseIdTransaksi =
             mDatabase.child("Users").child(getUsername).child("Jasa")
+                .orderByChild("status_jasa").equalTo("1").limitToFirst(1)
 
         mDatabaseIdTransaksi.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(this@CheckoutJasaActivity, "data tidak ada", Toast.LENGTH_SHORT)
-                    .show()
-            }
 
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(p0: DataSnapshot) {
-                for (datasnapshot in p0.children) {
 
-                    getIdJasa = datasnapshot.child("id_jasa").value.toString()
-                    val hargaJasa = datasnapshot.child("subtotal_perawatan").value.toString()
-                    val hargaBeli = datasnapshot.child("subtotal_produk_jasa").value.toString()
-                    val totalhargaJasa: Int = hargaJasa.toInt() * ambilDurasi.toInt()
-                    val totalSemua = totalhargaJasa + hargaBeli.toInt()
+                if (p0.exists()) {
 
-                    mDatabase.child("Users").child(getUsername).child("Jasa")
-                        .child(getIdJasa).child("status_jasa").setValue("2")
-                    mDatabase.child("Users").child(getUsername).child("Jasa")
-                        .child(getIdJasa).child("durasi_perawatan").setValue(ambilDurasi)
-                    mDatabase.child("Users").child(getUsername).child("Jasa")
-                        .child(getIdJasa).child("subtotal_perawatan")
-                        .setValue(totalhargaJasa.toString())
-                    mDatabase.child("Users").child(getUsername).child("Jasa")
-                        .child(getIdJasa).child("total_biaya_jasa").setValue(totalSemua.toString())
+                    for (getdataSnapshot in p0.children) {
+
+                        getId = getdataSnapshot.child("id_jasa").value.toString()
+
+                        // request data di detail transaksi
+                        val mDatabaseStarter =
+                            mDatabase.child("Users").child(getUsername).child("Jasa")
+                                .child(getId).child("Detail_Jasa")
+
+                        mDatabaseStarter.addListenerForSingleValueEvent(object :
+                            ValueEventListener {
+
+                            @SuppressLint("SetTextI18n")
+                            @RequiresApi(Build.VERSION_CODES.O)
+                            override fun onDataChange(p0: DataSnapshot) {
+
+                                if (p0.exists()) {
+                                    for (datasnapshot in p0.children) {
+
+                                        getIdJasa =
+                                            datasnapshot.child("id_transaksi").value.toString()
+
+                                        val hargaPerawatan =
+                                            tv_subtotal_perawatan_jasa.text.toString()
+
+                                        val durasiPerawatan = tv_durasi_jasa.text.toString()
+
+                                        val sTotalSemua = tv_total_checkout_jasa.text.toString()
+
+                                        val sTotalBayarProduk =
+                                            tv_harga_produk_jasa.text.toString()
+
+                                        val totalSemua = sTotalSemua.drop(2)
+                                        val totalBayarProduk = sTotalBayarProduk.drop(2)
+                                        val totalBayarPerawatan = durasiPerawatan.drop(2)
+
+                                        queryUpdate(getId, "status_jasa", "2")
+
+                                        queryUpdate(getId, "durasi_perawatan", totalBayarPerawatan)
+
+                                        queryUpdate(getId, "subtotal_perawatan", hargaPerawatan)
+
+                                        queryUpdate(getId, "total_biaya_jasa", totalSemua)
+
+                                        queryUpdate(getId, "subtotal_produk_jasa", totalBayarProduk)
+
+                                    }
+                                } else {
+                                    Toast.makeText(
+                                        this@CheckoutJasaActivity,
+                                        "Data Tidak Data Yang INI",
+                                        Toast.LENGTH_SHORT
+                                    )
+                                        .show()
+                                }
+
+                            }
+
+                            override fun onCancelled(p0: DatabaseError) {
+                                Toast.makeText(
+                                    this@CheckoutJasaActivity,
+                                    "" + p0.message,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                        })
+
+                    }
+
+                } else {
+                    Toast.makeText(
+                        this@CheckoutJasaActivity,
+                        "Data Tidak Data",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
                 }
 
             }
+
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(this@CheckoutJasaActivity, "" + p0.message, Toast.LENGTH_LONG)
+                    .show()
+            }
+
         })
+
+    }
+
+    private fun queryUpdate(id: String, node: String, value: String) {
+        mDatabase.child("Users").child(getUsername)
+            .child("Jasa")
+            .child(id).child(node)
+            .setValue(value)
 
     }
 }

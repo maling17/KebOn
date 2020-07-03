@@ -13,14 +13,14 @@ import com.example.kebon.PembayaranActivity
 import com.example.kebon.R
 import com.example.kebon.adapter.CheckoutAdapter
 import com.example.kebon.alamat.PilihAlamatActivity
-import com.example.kebon.model.Transaksi
+import com.example.kebon.model.Detail_Transaksi
 import com.example.kebon.utils.Preferences
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_checkout_beli.*
 
 class CheckoutBeliActivity : AppCompatActivity() {
 
-    private var checkoutList = ArrayList<Transaksi>()
+    private var checkoutList = ArrayList<Detail_Transaksi>()
     private var getUsername = ""
 
     private lateinit var mFirebaseDatabase: DatabaseReference
@@ -116,35 +116,80 @@ class CheckoutBeliActivity : AppCompatActivity() {
     }
 
     private fun getDataTransaksi() {
-        val mDatabaseStarter =
+        var getId = ""
+        val mDatabaseIdTransaksi =
             mDatabase.child("Users").child(getUsername).child("Transaksi")
-                .orderByChild("status_beli").equalTo("1")
+                .orderByChild("status_beli").equalTo("1").limitToFirst(1)
 
-        mDatabaseStarter.addListenerForSingleValueEvent(object : ValueEventListener {
+        mDatabaseIdTransaksi.addListenerForSingleValueEvent(object : ValueEventListener {
 
-            @SuppressLint("SetTextI18n")
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(p0: DataSnapshot) {
+
                 if (p0.exists()) {
 
                     for (getdataSnapshot in p0.children) {
 
-                        val transaksi = getdataSnapshot.getValue(Transaksi::class.java)
-                        checkoutList.add(transaksi!!)
-                        total =
-                            (checkoutList.sumBy { it.subtotal_produk_beli?.toInt()!! }).toString()
+                        getId = getdataSnapshot.child("id_transaksi").value.toString()
+
+                        // request data di detail transaksi
+                        val mDatabaseStarter =
+                            mDatabase.child("Users").child(getUsername).child("Transaksi")
+                                .child(getId).child("Detail_Transaksi")
+
+                        mDatabaseStarter.addListenerForSingleValueEvent(object :
+                            ValueEventListener {
+
+                            @SuppressLint("SetTextI18n")
+                            @RequiresApi(Build.VERSION_CODES.O)
+                            override fun onDataChange(p0: DataSnapshot) {
+
+                                if (p0.exists()) {
+
+                                    for (getdataSnapshot in p0.children) {
+
+                                        val transaksi =
+                                            getdataSnapshot.getValue(Detail_Transaksi::class.java)
+                                        checkoutList.add(transaksi!!)
+                                        total =
+                                            (checkoutList.sumBy { it.harga_produk?.toInt()!! }).toString()
+
+                                    }
+                                    tv_total_harga_produk_beli.text = "Rp$total"
+                                    tv_total_produk_beli_rv_produk.text = "Rp$total"
+
+                                    val totalPembayaran = total.toInt() + getHargaKurir.toInt()
+                                    tv_total_pembayaran_checkout.text = "Rp$totalPembayaran"
+                                    tv_total_checkout.text = "Rp$totalPembayaran"
+
+                                    preferences.setValues("totalHargaProdukBeli", total)
+                                    tv_total_harga_produk_beli.text = "Rp$total"
+
+                                    rv_produk_checkout.adapter = CheckoutAdapter(checkoutList) {
+                                    }
+
+                                } else {
+                                    Toast.makeText(
+                                        this@CheckoutBeliActivity,
+                                        "Data Tidak Data Yang INI",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+
+                            }
+
+                            override fun onCancelled(p0: DatabaseError) {
+                                Toast.makeText(
+                                    this@CheckoutBeliActivity,
+                                    "" + p0.message,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                        })
+
                     }
 
-                    tv_total_harga_produk_beli.text = "Rp$total"
-                    tv_total_produk_beli_rv_produk.text = "Rp$total"
-
-                    val totalPembayaran = total.toInt() + getHargaKurir.toInt()
-                    tv_total_pembayaran_checkout.text = "Rp$totalPembayaran"
-                    tv_total_checkout.text = "Rp$totalPembayaran"
-
-                    rv_produk_checkout.adapter = CheckoutAdapter(checkoutList) {
-
-                    }
                 } else {
                     Toast.makeText(this@CheckoutBeliActivity, "Data Tidak Data", Toast.LENGTH_SHORT)
                         .show()
@@ -155,8 +200,12 @@ class CheckoutBeliActivity : AppCompatActivity() {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(this@CheckoutBeliActivity, "" + p0.message, Toast.LENGTH_LONG).show()
             }
+
         })
+
+
     }
+
 
     private fun getDataKurir() {
         if (getNamaKurir != null) {
@@ -182,43 +231,119 @@ class CheckoutBeliActivity : AppCompatActivity() {
 
         val hargaOngkir = getHargaKurir
         val namaKurir = getNamaKurir
-
+        var getId = ""
         val mDatabaseIdTransaksi =
             mDatabase.child("Users").child(getUsername).child("Transaksi")
+                .orderByChild("status_beli").equalTo("1").limitToFirst(1)
 
         mDatabaseIdTransaksi.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(this@CheckoutBeliActivity, "data tidak ada", Toast.LENGTH_SHORT)
-                    .show()
-            }
 
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(p0: DataSnapshot) {
-                for (datasnapshot in p0.children) {
 
-                    getIdTransaksi = datasnapshot.child("id_transaksi").value.toString()
-                    val hargaBeli = datasnapshot.child("subtotal_produk_beli").value.toString()
-                    val totalBayar: Int = hargaBeli.toInt() + hargaOngkir.toInt()
+                if (p0.exists()) {
+
+                    for (getdataSnapshot in p0.children) {
+
+                        getId = getdataSnapshot.child("id_transaksi").value.toString()
+
+                        // request data di detail transaksi
+                        val mDatabaseStarter =
+                            mDatabase.child("Users").child(getUsername).child("Transaksi")
+                                .child(getId).child("Detail_Transaksi")
+
+                        mDatabaseStarter.addListenerForSingleValueEvent(object :
+                            ValueEventListener {
+
+                            @SuppressLint("SetTextI18n")
+                            @RequiresApi(Build.VERSION_CODES.O)
+                            override fun onDataChange(p0: DataSnapshot) {
+
+                                if (p0.exists()) {
+                                    for (datasnapshot in p0.children) {
+
+                                        getIdTransaksi =
+                                            datasnapshot.child("id_transaksi").value.toString()
+
+                                        val getIdProduk =
+                                            datasnapshot.child("id_produk").value.toString()
+
+                                        val hargaBeli = datasnapshot
+                                            .child("harga_produk").value.toString()
 
 
+                                        val sTotalSemua = tv_total_checkout.text.toString()
+                                        val sTotalBayarProduk =
+                                            tv_total_harga_produk_beli.text.toString()
+
+                                        val totalSemua = sTotalSemua.drop(2)
+                                        val totalBayarProduk = sTotalBayarProduk.drop(2)
+
+
+                                        queryUpdate(getId, "status_beli", "2")
+
+                                        queryUpdate(getId, "jenis_pengiriman", namaKurir)
+
+                                        queryUpdate(getId, "subtotal_pengiriman", hargaOngkir)
+
+                                        queryUpdate(getId, "total_biaya", totalSemua)
+
+                                        queryUpdate(getId, "subtotal_produk_beli", totalBayarProduk)
+
+                                        queryUpdate(getId, "nm_alamat", getNamaAlamat)
+
+                                        queryUpdate(getId, "nmr_telp", getNmrTelp)
+
+                                        queryUpdate(getId, "alamat_lengkap", getAlamatLengkap)
+                                    }
+                                } else {
+                                    Toast.makeText(
+                                        this@CheckoutBeliActivity,
+                                        "Data Tidak Data Yang INI",
+                                        Toast.LENGTH_SHORT
+                                    )
+                                        .show()
+                                }
+
+                            }
+
+                            override fun onCancelled(p0: DatabaseError) {
+                                Toast.makeText(
+                                    this@CheckoutBeliActivity,
+                                    "" + p0.message,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                        })
+
+                    }
+
+                } else {
                     Toast.makeText(
                         this@CheckoutBeliActivity,
-                        totalBayar.toString(),
+                        "Data Tidak Data",
                         Toast.LENGTH_SHORT
-                    ).show()
-
-                    mDatabase.child("Users").child(getUsername).child("Transaksi")
-                        .child(getIdTransaksi).child("status_beli").setValue("2")
-                    mDatabase.child("Users").child(getUsername).child("Transaksi")
-                        .child(getIdTransaksi).child("jenis_pengiriman").setValue(namaKurir)
-                    mDatabase.child("Users").child(getUsername).child("Transaksi")
-                        .child(getIdTransaksi).child("subtotal_pengiriman").setValue(hargaOngkir)
-                    mDatabase.child("Users").child(getUsername).child("Transaksi")
-                        .child(getIdTransaksi).child("total_biaya").setValue(totalBayar.toString())
+                    )
+                        .show()
                 }
 
             }
+
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(this@CheckoutBeliActivity, "" + p0.message, Toast.LENGTH_LONG)
+                    .show()
+            }
+
         })
 
     }
 
+    private fun queryUpdate(id: String, node: String, value: String) {
+        mDatabase.child("Users").child(getUsername)
+            .child("Transaksi")
+            .child(id).child(node)
+            .setValue(value)
+
+    }
 }

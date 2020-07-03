@@ -9,15 +9,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kebon.R
-import com.example.kebon.model.Jasa
-import com.example.kebon.model.Produk
-import com.example.kebon.model.StarterProduk
-import com.example.kebon.model.Transaksi
+import com.example.kebon.model.*
 import com.squareup.picasso.Picasso
 
 class CheckoutJasaAdapter(
-    private var data: List<Jasa>,
-    private val listener: (Jasa) -> Unit
+    private var data: List<Detail_Jasa>,
+    private val listener: (Detail_Jasa) -> Unit
 ) : RecyclerView.Adapter<CheckoutJasaAdapter.LeagueViewHolder>() {
     lateinit var ContextAdapter: Context
 
@@ -29,9 +26,9 @@ class CheckoutJasaAdapter(
         private val ivPhoto: ImageView = view.findViewById(R.id.iv_produk_checkout)
 
         @SuppressLint("SetTextI18n")
-        fun bindItem(data: Jasa, listener: (Jasa) -> Unit, context: Context, position: Int) {
+        fun bindItem(data: Detail_Jasa, listener: (Detail_Jasa) -> Unit, context: Context, position: Int) {
             tvNama.text = data.nm_produk
-            tvHarga.text ="Rp"+data.subtotal_produk_jasa
+            tvHarga.text ="Rp"+data.harga_beli
             tvJumlahBeli.text=data.jumlah_jasa
 
             Picasso.get().load(data.url_gambar).into(ivPhoto)

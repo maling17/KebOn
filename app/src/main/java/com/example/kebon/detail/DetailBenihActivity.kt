@@ -7,16 +7,17 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kebon.MainActivity
 import com.example.kebon.R
+import com.example.kebon.model.Detail_Transaksi
 import com.example.kebon.model.Produk
 import com.example.kebon.model.Transaksi
 import com.example.kebon.transaksi.CheckoutBeliActivity
 import com.example.kebon.utils.Preferences
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_benih.*
 import java.time.LocalDate
@@ -30,6 +31,7 @@ class DetailBenihActivity : AppCompatActivity() {
     private var nama_produk: String = ""
 
     private var id_produk: String? = ""
+    private var sIdTransaksi: String? = ""
 
     private lateinit var mFirebaseDatabase: DatabaseReference
     private lateinit var mFirebaseInstance: FirebaseDatabase
@@ -139,6 +141,7 @@ class DetailBenihActivity : AppCompatActivity() {
 
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun simpanTransaksiBeli() {
         val dataProduk = intent.getParcelableExtra<Produk>("data")
@@ -153,19 +156,60 @@ class DetailBenihActivity : AppCompatActivity() {
         dateNow = currentDate.toString()
 
         val transaksi = Transaksi()
-        transaksi.id_produk = id_produk
-        transaksi.jumlah_beli = totaltransaksi.toString()
+        val detailTransaksi = Detail_Transaksi()
+        detailTransaksi.id_produk = id_produk
+        detailTransaksi.jumlah_beli = totaltransaksi.toString()
         transaksi.status_beli = "1"
+        detailTransaksi.url_gambar = url_gambar
+        detailTransaksi.harga_produk = totalHargaProduk.toString()
+        detailTransaksi.nm_produk = nama_produk
         val key = mFirebaseDatabase.child(getUsername).child("Transaksi").push().key
         transaksi.id_transaksi = key
-        transaksi.subtotal_produk_beli = totalHargaProduk.toString()
         transaksi.tgl_transaksi = dateNow
-        transaksi.kategori = "beli"
-        transaksi.url_gambar = url_gambar
-        transaksi.nm_produk = nama_produk
+        transaksi.username = getUsername
 
-        mFirebaseDatabase.child(getUsername).child("Transaksi").child(key.toString())
-            .setValue(transaksi)
+        //cek field id transaksi yang ada [Start 2]
+        val check =
+            mFirebaseDatabase.child(getUsername).child("Transaksi").orderByChild("status_beli")
+                .equalTo("1")
+                .limitToFirst(1)
 
+        check.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(
+                    this@DetailBenihActivity,
+                    "KOSONG",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.exists()) {
+                    for (dataSnapshot in p0.children) {
+
+                        sIdTransaksi =
+                            dataSnapshot.child("id_transaksi").value.toString()
+                        mFirebaseDatabase.child(getUsername).child("Transaksi")
+                            .child(sIdTransaksi.toString())
+                            .child("Detail_Transaksi")
+                            .child(id_produk.toString())
+                            .setValue(detailTransaksi)
+                        preferences.setValues("id_transaksi",sIdTransaksi.toString())
+                    }
+                } else {
+                    mFirebaseDatabase.child(getUsername).child("Transaksi")
+                        .child(key.toString())
+                        .setValue(transaksi)
+                    mFirebaseDatabase.child(getUsername).child("Transaksi")
+                        .child(key.toString())
+                        .child("Detail_Transaksi")
+                        .child(id_produk.toString())
+                        .setValue(detailTransaksi)
+                    preferences.setValues("id_transaksi",key.toString())
+
+                }
+            }
+        })
     }
 }

@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kebon.R
+import com.example.kebon.model.Detail_Transaksi
 import com.example.kebon.model.Transaksi
 import com.example.kebon.utils.Preferences
 import com.google.firebase.database.DatabaseReference
@@ -16,8 +17,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
 class KeranjangAdapter(
-    private var data: List<Transaksi>,
-    private val listener: (Transaksi) -> Unit
+    private var data: List<Detail_Transaksi>,
+    private val listener: (Detail_Transaksi) -> Unit
 ) : RecyclerView.Adapter<KeranjangAdapter.LeagueViewHolder>() {
     lateinit var ContextAdapter: Context
     var total: Int = 0
@@ -36,26 +37,28 @@ class KeranjangAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bindItem(
-            data: Transaksi,
-            listener: (Transaksi) -> Unit,
+            data: Detail_Transaksi,
+            listener: (Detail_Transaksi) -> Unit,
             context: Context,
             position: Int
         ) {
             mDatabase = FirebaseDatabase.getInstance().reference
             preferences = Preferences(context)
 
+
             username = preferences.getValues("username").toString()
 
             tvJudul.text = data.nm_produk
-            tvHarga.text = data.subtotal_produk_beli.toString()
+            tvHarga.text = data.harga_produk.toString()
             tvtotal.text = data.jumlah_beli.toString()
+            val idProduk=data.id_produk.toString()
             Picasso.get().load(data.url_gambar).into(ivPhoto)
 
             var totaltransaksi: Int = data.jumlah_beli?.toInt()!!
-            val hargaProduk = data.subtotal_produk_beli?.toInt()!!
+            val hargaProduk = data.harga_produk?.toInt()!!
             var hargaSementara = hargaProduk
             val baseHargaProduk: Int = hargaProduk / totaltransaksi
-            val getIdTransaksi = data.id_transaksi
+            val getIdTransaksi =  preferences.getValues("id_transaksi")
 
             btnMin.setOnClickListener {
 
@@ -67,7 +70,7 @@ class KeranjangAdapter(
                         .child(getIdTransaksi!!).removeValue()
                 } else {
 
-                    val transaksi = Transaksi()
+                    val detailTransaksi = Detail_Transaksi()
                     btnMin.isClickable = true
                     totaltransaksi -= 1
                     tvtotal.text = "$totaltransaksi"
@@ -75,29 +78,33 @@ class KeranjangAdapter(
                     hargaSementara = totalHargaMin
                     tvHarga.text = totalHargaMin.toString()
 
-                    transaksi.jumlah_beli = totaltransaksi.toString()
-                    transaksi.subtotal_produk_beli = hargaSementara.toString()
+                    detailTransaksi.jumlah_beli = totaltransaksi.toString()
+                    detailTransaksi.harga_produk = hargaSementara.toString()
 
                     mDatabase.child("Users")
                         .child(username)
                         .child("Transaksi")
                         .child(getIdTransaksi!!)
+                        .child("Detail_Transaksi")
+                        .child(idProduk)
                         .child("jumlah_beli")
-                        .setValue(transaksi.jumlah_beli)
+                        .setValue(detailTransaksi.jumlah_beli)
 
                     mDatabase.child("Users")
                         .child(username)
                         .child("Transaksi")
                         .child(getIdTransaksi)
-                        .child("subtotal_produk_beli")
-                        .setValue(transaksi.subtotal_produk_beli)
+                        .child("Detail_Transaksi")
+                        .child(idProduk)
+                        .child("harga_produk")
+                        .setValue(detailTransaksi.harga_produk)
 
                 }
 
             }
 
             btnPlus.setOnClickListener {
-                val transaksi = Transaksi()
+                val detailTransaksi = Detail_Transaksi()
                 btnMin.isClickable = true
                 totaltransaksi += 1
                 tvtotal.text = "$totaltransaksi"
@@ -105,23 +112,26 @@ class KeranjangAdapter(
                 hargaSementara = totalHargaPlus
                 tvHarga.text = totalHargaPlus.toString()
 
-                transaksi.jumlah_beli = totaltransaksi.toString()
-                transaksi.subtotal_produk_beli = hargaSementara.toString()
+                detailTransaksi.jumlah_beli = totaltransaksi.toString()
+                detailTransaksi.harga_produk = hargaSementara.toString()
 
                 mDatabase.child("Users")
                     .child(username)
                     .child("Transaksi")
                     .child(getIdTransaksi!!)
+                    .child("Detail_Transaksi")
+                    .child(idProduk)
                     .child("jumlah_beli")
-                    .setValue(transaksi.jumlah_beli)
+                    .setValue(detailTransaksi.jumlah_beli)
 
                 mDatabase.child("Users")
                     .child(username)
                     .child("Transaksi")
                     .child(getIdTransaksi)
-                    .child("subtotal_produk_beli")
-                    .setValue(transaksi.subtotal_produk_beli)
-
+                    .child("Detail_Transaksi")
+                    .child(idProduk)
+                    .child("harga_produk")
+                    .setValue(detailTransaksi.harga_produk)
             }
 
             itemView.setOnClickListener {
