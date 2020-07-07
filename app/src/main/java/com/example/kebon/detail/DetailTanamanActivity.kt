@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kebon.MainActivity
 import com.example.kebon.R
 import com.example.kebon.model.*
 import com.example.kebon.transaksi.CheckoutBeliActivity
@@ -193,11 +194,13 @@ class DetailTanamanActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 simpanTransaksiJasa()
             }
-            /* val intent = Intent(this, MainActivity::class.java)
-             startActivity(intent)*/
+             val intent = Intent(this, MainActivity::class.java)
+             startActivity(intent)
         }
         btnCheckout.setOnClickListener {
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                simpanTransaksiJasa()
+            }
             val intent = Intent(
                 this,
                 CheckoutJasaActivity::class.java

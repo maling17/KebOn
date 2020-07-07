@@ -1,5 +1,6 @@
 package com.example.kebon.alamat
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.LinearLayout
@@ -41,6 +42,10 @@ class PilihAlamatActivity : AppCompatActivity() {
 
         btn__simpan_pilih_alamat.setOnClickListener {
             onBackPressed()
+        }
+        fab_tambah_alamat.setOnClickListener{
+            val intent = Intent(this,EditAlamatActivity::class.java)
+            startActivity(intent)
         }
     }
 

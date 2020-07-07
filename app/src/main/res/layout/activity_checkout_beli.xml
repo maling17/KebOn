@@ -392,7 +392,19 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/jika_merubah_alamat_pengiriman_dan_opsi_pengiriman_agar_melakukan_swipe_down_agar_terupdate"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/rubik"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout13"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
                 <LinearLayout
+                    android:id="@+id/linearLayout13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"

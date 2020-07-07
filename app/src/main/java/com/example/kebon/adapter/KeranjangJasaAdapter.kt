@@ -75,11 +75,13 @@ class KeranjangJasaAdapter(
                     tvHarga.text = totalHargaMin.toString()
 
                     detailJasa.jumlah_jasa = totaljasa.toString()
+                    detailJasa.harga_beli = hargaSementara.toString()
+
                     mDatabase.child("Users")
                         .child(username)
                         .child("Jasa")
                         .child(getIdjasa!!)
-                        .child("Detail_jasa")
+                        .child("Detail_Jasa")
                         .child(getIdProduk)
                         .child("jumlah_jasa")
                         .setValue(detailJasa.jumlah_jasa)
@@ -88,10 +90,10 @@ class KeranjangJasaAdapter(
                         .child(username)
                         .child("Jasa")
                         .child(getIdjasa)
-                        .child("Detail_jasa")
+                        .child("Detail_Jasa")
                         .child(getIdProduk)
-                        .child("subtotal_produk_jasa")
-                        .setValue(detailJasa.harga_jasa)
+                        .child("harga_beli")
+                        .setValue(detailJasa.harga_beli)
 
                 }
 
@@ -107,13 +109,13 @@ class KeranjangJasaAdapter(
                 tvHarga.text = totalHargaPlus.toString()
 
                 detailJasa.jumlah_jasa = totaljasa.toString()
-                detailJasa.harga_jasa = hargaSementara.toString()
+                detailJasa.harga_beli = hargaSementara.toString()
 
                 mDatabase.child("Users")
                     .child(username)
                     .child("Jasa")
                     .child(getIdjasa!!)
-                    .child("Detail_jasa")
+                    .child("Detail_Jasa")
                     .child(getIdProduk)
                     .child("jumlah_jasa")
                     .setValue(detailJasa.jumlah_jasa)
@@ -122,10 +124,10 @@ class KeranjangJasaAdapter(
                     .child(username)
                     .child("Jasa")
                     .child(getIdjasa)
-                    .child("Detail_jasa")
+                    .child("Detail_Jasa")
                     .child(getIdProduk)
-                    .child("subtotal_produk_jasa")
-                    .setValue(detailJasa.harga_jasa)
+                    .child("harga_beli")
+                    .setValue(detailJasa.harga_beli)
             }
 
             itemView.setOnClickListener {

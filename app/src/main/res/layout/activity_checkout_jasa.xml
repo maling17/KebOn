@@ -316,7 +316,21 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik"
+                    android:text="@string/jika_mengubah_durasi_perawatan_agar_melakukan_swipe_down_agar_terupdate"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout13"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
                 <LinearLayout
+                    android:id="@+id/linearLayout13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"

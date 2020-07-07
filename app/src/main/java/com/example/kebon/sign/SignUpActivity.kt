@@ -130,9 +130,8 @@ class SignUpActivity : AppCompatActivity() {
 
                     mFirebaseDatabase.child(username).setValue(data)
                     val status="1"
-
                     preferences.setValues("nama", data.password.toString())
-                    preferences.setValues("user", data.username.toString())
+                    preferences.setValues("username", data.username.toString())
                     preferences.setValues("email", data.email.toString())
                     preferences.setValues("status", status)
                     progressDialog.dismiss()

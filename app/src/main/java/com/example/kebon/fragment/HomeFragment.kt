@@ -76,7 +76,7 @@ class HomeFragment : Fragment() {
         btn_keranjang_home.setOnClickListener {
             val username: String = tv_nama_home.text.toString()
             val intent = Intent(context, KeranjangActivity::class.java)
-            preferences.setValues("username_home", username)
+            preferences.setValues("username", username)
 
             startActivity(intent)
         }

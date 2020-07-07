@@ -152,4 +152,6 @@
     <string name="jika_sudah_melakukan_pembayaran_harap_klik_tombol_saya_sudah_bayar_agar_admin_kami_segera_mengkonfirmasi_pesanan_anda">Jika sudah melakukan pembayaran, harap klik tombol SAYA SUDAH BAYAR agar admin kami segera mengkonfirmasi pesanan Anda.</string>
     <string name="bulan">Bulan</string>
     <string name="hari">Hari</string>
+    <string name="jika_mengubah_durasi_perawatan_agar_melakukan_swipe_down_agar_terupdate">Jika Mengubah Durasi Perawatan agar melakukan Swipe down agar terupdate</string>
+    <string name="jika_merubah_alamat_pengiriman_dan_opsi_pengiriman_agar_melakukan_swipe_down_agar_terupdate">Jika merubah alamat pengiriman dan opsi pengiriman agar melakukan swipe down agar terupdate</string>
 </resources>

@@ -30,10 +30,10 @@ class CheckoutJasaActivity : AppCompatActivity() {
     private lateinit var mDatabase: DatabaseReference
     private lateinit var preferences: Preferences
 
-    private var total = ""
-    private var totaljasa = ""
-    private var getIdJasa = ""
-    var getDurasi = ""
+    private var total = "0"
+    private var totaljasa = "0"
+    private var getIdJasa = " "
+    var getDurasi = "0"
     var getPrefDurasi = "1"
     var hari = 0
 
@@ -47,24 +47,17 @@ class CheckoutJasaActivity : AppCompatActivity() {
         mFirebaseInstance = FirebaseDatabase.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
         mFirebaseDatabase = mFirebaseInstance.getReference("Users")
+
         preferences = Preferences(applicationContext)
         getUsername = preferences.getValues("username").toString()
 
-        //  mengambil data alamat
-        getPrefDurasi = preferences.getValues("durasi").toString()
-        getDurasi = getPrefDurasi
-
         getDataJasa()
-
-        // TEXTVIEW ACTION
-        hari = getDurasi.toInt() * 30
-        tv_durasi_jasa.text = "$getDurasi Bulan"
-        tv_hari_perawatan.text = "($hari Hari)"
 
         //BUTTON ACTION
         tv_ubah_durasi.setOnClickListener {
             buttonPopUpLanjutJasa()
         }
+
         btn_lanjut_detail_checkout_jasa.setOnClickListener {
             updateDataJasa()
             val ambilTotalPembayaran = tv_total_pembayaran_checkout_jasa.text

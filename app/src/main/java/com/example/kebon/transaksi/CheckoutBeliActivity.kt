@@ -28,12 +28,12 @@ class CheckoutBeliActivity : AppCompatActivity() {
     private lateinit var mDatabase: DatabaseReference
     private lateinit var preferences: Preferences
 
-    private var total = ""
-    private var getHargaKurir = ""
-    private var getNamaKurir = ""
-    private var getNamaAlamat = ""
-    private var getNmrTelp = ""
-    private var getAlamatLengkap = ""
+    private var total = "0"
+    private var getHargaKurir = "0"
+    private var getNamaKurir = " "
+    private var getNamaAlamat = " "
+    private var getNmrTelp = " "
+    private var getAlamatLengkap = " "
     var getIdTransaksi = ""
 
 
@@ -48,14 +48,6 @@ class CheckoutBeliActivity : AppCompatActivity() {
         preferences = Preferences(applicationContext)
         getUsername = preferences.getValues("username").toString()
 
-        //  mengambil nama kurir dan ongkos kirimnya
-        getHargaKurir = preferences.getValues("HargaKurir").toString()
-        getNamaKurir = preferences.getValues("NmKurir").toString()
-
-        //  mengambil data alamat
-        getNamaAlamat = preferences.getValues("nm_alamat").toString()
-        getNmrTelp = preferences.getValues("nmr_telp").toString()
-        getAlamatLengkap = preferences.getValues("alamat_lengkap").toString()
 
         // ambil data - data
         getDataTransaksi()
@@ -112,7 +104,6 @@ class CheckoutBeliActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
     }
 
     private fun getDataTransaksi() {
@@ -158,8 +149,11 @@ class CheckoutBeliActivity : AppCompatActivity() {
                                     tv_total_harga_produk_beli.text = "Rp$total"
                                     tv_total_produk_beli_rv_produk.text = "Rp$total"
 
+
                                     val totalPembayaran = total.toInt() + getHargaKurir.toInt()
+
                                     tv_total_pembayaran_checkout.text = "Rp$totalPembayaran"
+
                                     tv_total_checkout.text = "Rp$totalPembayaran"
 
                                     preferences.setValues("totalHargaProdukBeli", total)
