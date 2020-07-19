@@ -13,6 +13,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout17"
             android:layout_width="280dp"
             android:layout_height="140dp"
             android:background="@drawable/rounded_layout_gray"
@@ -21,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_nama_produk_list_activity"
+            android:id="@+id/tv_nama_produk_list_perkembangan"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -32,70 +33,70 @@
             app:layout_constraintTop_toTopOf="@+id/linearLayout9" />
 
         <TextView
-            android:id="@+id/tv_harga_keranjang"
-            android:layout_width="50dp"
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="@string/rp0"
+            android:fontFamily="@font/rubik"
+            android:text="@string/dirawat_sejak"
             android:textColor="@color/colorGreen"
             android:textSize="11sp"
             app:layout_constraintStart_toEndOf="@+id/linearLayout9"
-            app:layout_constraintTop_toBottomOf="@+id/tv_nama_produk_list_activity" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_nama_produk_list_perkembangan" />
 
+        <TextView
+            android:id="@+id/tv_tgl_list_perkembangan"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="@string/dd_mm_yyyy"
+            android:textColor="@color/colorGreen"
+            android:textSize="11sp"
+            app:layout_constraintStart_toEndOf="@+id/textView33"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nama_produk_list_perkembangan" />
 
         <LinearLayout
             android:id="@+id/linearLayout9"
             android:layout_width="120dp"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:background="@drawable/rounded_layout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/iv_photo_keranjang"
+                android:id="@+id/iv_photo_list_perkembangan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/rounded_layout"
                 android:scaleType="fitXY" />
         </LinearLayout>
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_flower"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout9"
+            app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
-            <ImageView
-                android:id="@+id/btn_min"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_btn_min_cream" />
-
-            <TextView
-                android:id="@+id/tv_jumlah_beli_keranjang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:fontFamily="@font/rubik_medium"
-                android:text="@string/_1"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp" />
-
-            <ImageView
-                android:id="@+id/btn_plus"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="20dp"
-                android:src="@drawable/ic_btn_plus" />
-
-
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/tv_status_list_perkembangan"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/rubik"
+            android:text="@string/status"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

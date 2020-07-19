@@ -101,6 +101,7 @@ class CheckoutBeliActivity : AppCompatActivity() {
             val ambilTotalPembayaran = tv_total_pembayaran_checkout.text
             val intent = Intent(this, PembayaranActivity::class.java)
             intent.putExtra("total_pembayaran", ambilTotalPembayaran)
+            intent.putExtra("kategori_transaksi", "beli")
             startActivity(intent)
         }
 
@@ -143,7 +144,7 @@ class CheckoutBeliActivity : AppCompatActivity() {
                                             getdataSnapshot.getValue(Detail_Transaksi::class.java)
                                         checkoutList.add(transaksi!!)
                                         total =
-                                            (checkoutList.sumBy { it.harga_produk?.toInt()!! }).toString()
+                                            (checkoutList.sumBy { it.harga_beli?.toInt()!! }).toString()
 
                                     }
                                     tv_total_harga_produk_beli.text = "Rp$total"
@@ -213,9 +214,9 @@ class CheckoutBeliActivity : AppCompatActivity() {
 
     private fun getDataAlamat() {
         if (getNamaAlamat != null) {
-            tv_nama_detail_checkout.text = getNamaAlamat
-            tv_nmr_detail_checkout.text = getNmrTelp
-            tv_alamat_detail_checkout.text = getAlamatLengkap
+            tv_nama_detail_actibity.text = getNamaAlamat
+            tv_nmr_telp_detail_activity.text = getNmrTelp
+            tv_alamat_lengkap_detail_activity.text = getAlamatLengkap
         } else {
             Toast.makeText(this, "data alamat belum diambil", Toast.LENGTH_SHORT).show()
         }

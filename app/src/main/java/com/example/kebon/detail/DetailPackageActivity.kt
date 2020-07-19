@@ -19,6 +19,7 @@ import com.example.kebon.utils.Preferences
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_package.*
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
@@ -205,21 +206,22 @@ class DetailPackageActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun simpanTransaksiBeli() {
 
-        // total harga untuk subtotal produk jasa
+        // total harga untuk subtotal produk
         val totalHargaProduk = totalBeli * hargaProduk
 
-        val currentDate = LocalDate.now()
-        dateNow = currentDate.toString()
+        val currentDate = System.currentTimeMillis()
+        val dateFormat=SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+        val tglNow=dateFormat.format(currentDate)
+        dateNow = tglNow.toString()
 
         val transaksi = Transaksi()
         val detailTransaksi = Detail_Transaksi()
 
         detailTransaksi.id_produk = id_produk
         detailTransaksi.jumlah_beli = totalBeli.toString()
+        detailTransaksi.harga_beli=totalHargaProduk.toString()
         transaksi.status_beli = "1"
-        detailTransaksi.url_gambar = url_gambar
-        detailTransaksi.harga_produk = totalHargaProduk.toString()
-        detailTransaksi.nm_produk = nama_produk
+
         val key = mFirebaseDatabase.child(getUsername).child("Transaksi").push().key
         transaksi.id_transaksi = key
         transaksi.tgl_transaksi = dateNow
@@ -273,18 +275,18 @@ class DetailPackageActivity : AppCompatActivity() {
         // total harga untuk subtotal produk jasa
         val totalHargaProduk = totalBeli * hargaProduk
 
-        val currentDate = LocalDate.now()
-        dateNow = currentDate.toString()
+        val currentDate = System.currentTimeMillis()
+        val dateFormat= SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+        val tglNow=dateFormat.format(currentDate)
+        dateNow = tglNow.toString()
 
         val transaksi = Transaksi()
         val detailTransaksi = Detail_Transaksi()
 
         detailTransaksi.id_produk = id_produk_starter
         detailTransaksi.jumlah_beli = totalBeli.toString()
+        detailTransaksi.harga_beli=totalHargaProduk.toString()
         transaksi.status_beli = "1"
-        detailTransaksi.url_gambar = url_gambar
-        detailTransaksi.harga_produk = totalHargaProduk.toString()
-        detailTransaksi.nm_produk = nama_produk
 
         val key = mFirebaseDatabase.child(getUsername).child("Transaksi").push().key
         transaksi.id_transaksi = key

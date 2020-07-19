@@ -19,6 +19,7 @@ import com.example.kebon.utils.Preferences
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_tanaman.*
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 
 class DetailTanamanActivity : AppCompatActivity() {
@@ -194,8 +195,8 @@ class DetailTanamanActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 simpanTransaksiJasa()
             }
-             val intent = Intent(this, MainActivity::class.java)
-             startActivity(intent)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
         btnCheckout.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -222,22 +223,24 @@ class DetailTanamanActivity : AppCompatActivity() {
         // total harga untuk subtotal produk jasa
         val totalHargaProduk = totaltransaksi * hargaBeliProduk
 
-        val currentDate = LocalDate.now()
-        dateNow = currentDate.toString()
+        val currentDate = System.currentTimeMillis()
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+        val tglNow = dateFormat.format(currentDate)
+        dateNow = tglNow.toString()
 
         val transaksi = Transaksi()
         val detailTransaksi = Detail_Transaksi()
+
         detailTransaksi.id_produk = id_produk
         detailTransaksi.jumlah_beli = totaltransaksi.toString()
-        transaksi.status_beli = "1"
-        detailTransaksi.url_gambar = url_gambar
-        detailTransaksi.harga_produk = totalHargaProduk.toString()
-        detailTransaksi.nm_produk = nama_produk
+        detailTransaksi.harga_beli = totalHargaProduk.toString()
+
         val key = mFirebaseDatabase.child(getUsername).child("Transaksi").push().key
         transaksi.id_transaksi = key
         transaksi.tgl_transaksi = dateNow
         transaksi.username = getUsername
-        preferences.setValues("id_transaksi",key.toString())
+        transaksi.status_beli = "1"
+        preferences.setValues("id_transaksi", key.toString())
 
         //cek field id transaksi yang ada [Start 2]
         val check =
@@ -268,7 +271,7 @@ class DetailTanamanActivity : AppCompatActivity() {
                             .child(id_produk.toString())
                             .setValue(detailTransaksi)
 
-                        preferences.setValues("id_transaksi",sIdTransaksi.toString())
+                        preferences.setValues("id_transaksi", sIdTransaksi.toString())
                     }
                 } else {
                     mFirebaseDatabase.child(getUsername).child("Transaksi")
@@ -281,7 +284,7 @@ class DetailTanamanActivity : AppCompatActivity() {
                         .child(id_produk.toString())
                         .setValue(detailTransaksi)
 
-                    preferences.setValues("id_transaksi",key.toString())
+                    preferences.setValues("id_transaksi", key.toString())
                 }
             }
         })
@@ -297,22 +300,23 @@ class DetailTanamanActivity : AppCompatActivity() {
         // total harga untuk subtotal produk jasa
         val totalHargaProduk = totaljasa * hargaBeliProduk
 
-        val currentDate = LocalDate.now()
-        dateNow = currentDate.toString()
+        val currentDate = System.currentTimeMillis()
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+        val tglNow = dateFormat.format(currentDate)
+        dateNow = tglNow.toString()
 
         val jasa = Jasa()
         val detailJasa = Detail_Jasa()
         detailJasa.id_produk = id_produk
         detailJasa.jumlah_jasa = totaljasa.toString()
-        detailJasa.url_gambar = url_gambar
-        detailJasa.nm_produk = nama_produk
         detailJasa.harga_beli = totalHargaProduk.toString()
         detailJasa.harga_jasa = hargaJasaProduk.toString()
 
         val key = mFirebaseDatabase.child(getUsername).child("Jasa").push().key
         jasa.id_jasa = key
         jasa.status_jasa = "1"
-        jasa.tgl_transaksi = dateNow
+        jasa.tgl_jasa = dateNow
+        jasa.username=getUsername
 
         //cek field id transaksi yang ada [Start 2]
         val check =
@@ -341,7 +345,7 @@ class DetailTanamanActivity : AppCompatActivity() {
                             .child("Detail_Jasa")
                             .child(id_produk.toString())
                             .setValue(detailJasa)
-                        preferences.setValues("id_jasa",sIdJasa.toString())
+                        preferences.setValues("id_jasa", sIdJasa.toString())
                     }
                 } else {
                     mFirebaseDatabase.child(getUsername).child("Jasa")
@@ -352,7 +356,7 @@ class DetailTanamanActivity : AppCompatActivity() {
                         .child("Detail_Jasa")
                         .child(id_produk.toString())
                         .setValue(detailJasa)
-                    preferences.setValues("id_jasa",key.toString())
+                    preferences.setValues("id_jasa", key.toString())
                 }
             }
         })

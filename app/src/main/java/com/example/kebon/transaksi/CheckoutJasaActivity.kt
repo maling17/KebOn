@@ -63,6 +63,7 @@ class CheckoutJasaActivity : AppCompatActivity() {
             val ambilTotalPembayaran = tv_total_pembayaran_checkout_jasa.text
             val intent = Intent(this, PembayaranActivity::class.java)
             intent.putExtra("total_pembayaran", ambilTotalPembayaran)
+            intent.putExtra("kategori_transaksi", "jasa")
             startActivity(intent)
         }
 
@@ -265,13 +266,13 @@ class CheckoutJasaActivity : AppCompatActivity() {
 
                                         val totalSemua = sTotalSemua.drop(2)
                                         val totalBayarProduk = sTotalBayarProduk.drop(2)
-                                        val totalBayarPerawatan = durasiPerawatan.drop(2)
+                                        val totalBayarPerawatan = hargaPerawatan.drop(2)
 
                                         queryUpdate(getId, "status_jasa", "2")
 
-                                        queryUpdate(getId, "durasi_perawatan", totalBayarPerawatan)
+                                        queryUpdate(getId, "durasi_perawatan", durasiPerawatan)
 
-                                        queryUpdate(getId, "subtotal_perawatan", hargaPerawatan)
+                                        queryUpdate(getId, "subtotal_perawatan", totalBayarPerawatan)
 
                                         queryUpdate(getId, "total_biaya_jasa", totalSemua)
 

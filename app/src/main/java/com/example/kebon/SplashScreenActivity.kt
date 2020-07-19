@@ -28,6 +28,6 @@ lateinit var preferences: Preferences
                 startActivity(intent)
                 finish()
             }
-        }, 5000)
+        }, 2000)
     }
 }

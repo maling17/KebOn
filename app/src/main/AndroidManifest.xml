@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/logo_kres"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PembayaranActivity"></activity>
+        <activity android:name=".transaksi.UploadBuktiActivity"></activity>
+        <activity android:name=".PembayaranActivity" />
         <activity android:name=".alamat.PilihAlamatActivity" />
         <activity android:name=".transaksi.PilihKurirActivity" />
         <activity android:name=".transaksi.KeranjangActivity" />

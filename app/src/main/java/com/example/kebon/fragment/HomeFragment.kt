@@ -66,6 +66,7 @@ class HomeFragment : Fragment() {
 
         tv_lihat_produkPopuler.setOnClickListener {
             val intent = Intent(context, ProdukPopulerActivity::class.java)
+            intent.putExtra("Jasa","netral")
             startActivity(intent)
         }
 

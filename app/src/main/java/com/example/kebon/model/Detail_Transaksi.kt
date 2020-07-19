@@ -9,8 +9,6 @@ class Detail_Transaksi (
 
     var jumlah_beli:String?="",
     var id_produk:String?="",
-    var nm_produk:String?="",
-    var harga_produk:String?="",
-    var url_gambar:String?=""
+    var harga_beli:String?=""
 
 ):Parcelable

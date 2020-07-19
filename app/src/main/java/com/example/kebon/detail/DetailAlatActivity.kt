@@ -1,5 +1,6 @@
 package com.example.kebon.detail
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Build
@@ -20,7 +21,9 @@ import com.example.kebon.utils.Preferences
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_alat.*
+import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class DetailAlatActivity : AppCompatActivity() {
 
@@ -139,6 +142,7 @@ class DetailAlatActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun simpanTransaksiBeli() {
         val dataProduk = intent.getParcelableExtra<Produk>("data")
@@ -149,17 +153,18 @@ class DetailAlatActivity : AppCompatActivity() {
         // total harga untuk subtotal produk jasa
         val totalHargaProduk = totaltransaksi * hargaBeliProduk
 
-        val currentDate = LocalDate.now()
-        dateNow = currentDate.toString()
+        val currentDate = System.currentTimeMillis()
+        val dateFormat=SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+        val tglNow=dateFormat.format(currentDate)
+        dateNow = tglNow.toString()
 
         val transaksi = Transaksi()
         val detailTransaksi = Detail_Transaksi()
         detailTransaksi.id_produk = id_produk
         detailTransaksi.jumlah_beli = totaltransaksi.toString()
+        detailTransaksi.harga_beli = totalHargaProduk.toString()
         transaksi.status_beli = "1"
-        detailTransaksi.url_gambar = url_gambar
-        detailTransaksi.harga_produk = totalHargaProduk.toString()
-        detailTransaksi.nm_produk = nama_produk
+
         val key = mFirebaseDatabase.child(getUsername).child("Transaksi").push().key
         transaksi.id_transaksi = key
         transaksi.tgl_transaksi = dateNow

@@ -113,12 +113,7 @@ class JasaKeranjangFragment : Fragment() {
                                         jasaList.add(transaksi!!)
                                         total =
                                             (jasaList.sumBy { it.harga_beli?.toInt()!! }).toString()
-                                        Toast.makeText(
-                                            context,
-                                            jasaList[0].nm_produk,
-                                            Toast.LENGTH_LONG
-                                        )
-                                            .show()
+
                                     }
 
                                     preferences.setValues("totalHargaProdukBeli", total)

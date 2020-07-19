@@ -16,5 +16,6 @@ class Transaksi (
     var nm_alamat:String?="",
     var nmr_telp:String?="",
     var alamat_lengkap:String?="",
+    var url_bukti_pembayaran:String?="",
     var username:String?=""
 ):Parcelable

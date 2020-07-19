@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".detail.DetailJasaActivity">
 
-
     <ImageView
         android:id="@+id/iv_photo_detail_jasa"
         android:layout_width="match_parent"
@@ -90,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rubik_medium"
-                android:text="@string/kemangi"
+                android:text="@string/nama_produk"
                 android:textColor="@color/colorGreen"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -146,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik_medium"
-                        android:text="@string/berbuah"
+                        android:text="@string/status"
                         android:textColor="@color/colorBlack"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -170,11 +169,11 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_harga_jasa_detail_jasa"
+                        android:id="@+id/tv_estimasi_panen_detail_jasa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik_medium"
-                        android:text="@string/_15_april_2020"
+                        android:text="@string/dd_mm_yyyy"
                         android:textColor="@color/colorBlack"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -197,7 +196,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_estimasi_panen_detail_jasa"
+                        android:id="@+id/tv_sisa_waktu_detail_jasa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik_medium"
@@ -224,7 +223,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="@string/foto_terkini"
+                    android:text="@string/deskripsi_pertumbuhan"
                     android:textColor="@color/colorGreen"
                     android:textSize="15sp" />
 
@@ -241,11 +240,11 @@
                     android:id="@+id/tv_deskripsi_detail_jasa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="13sp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/rubik"
-                    android:text="@string/tinggi_tanaman_sudah_mencapai_kurang_lebih_50_cm_daunnya_lebat_dan_hijau_bunga_bunga_sudah_mulai_berubah_menjadi_buah_beberapa_buah_sudah_mulai_berwarna_merah"/>
+                    android:text="@string/tinggi_tanaman_sudah_mencapai_kurang_lebih_50_cm_daunnya_lebat_dan_hijau_bunga_bunga_sudah_mulai_berubah_menjadi_buah_beberapa_buah_sudah_mulai_berwarna_merah"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -268,11 +267,11 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/tv_tgl_update_detail_jasa_2"
+                    android:id="@+id/tv_tgl_update_detail_jasa_foto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="@string/di_update_2_april_2020"
+                    android:text="@string/dd_mm_yyyy"
                     android:textColor="@color/colorCream"
                     android:textSize="12sp" />
 
@@ -282,7 +281,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="150dp"/>
+                    android:layout_marginBottom="150dp" />
 
             </LinearLayout>
 
@@ -311,7 +310,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_round_orange"
                 android:fontFamily="@font/rubik_medium"
-                android:text="@string/jasa"
+                android:text="@string/tambah_durasi"
                 android:textColor="@color/colorCream"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle" />

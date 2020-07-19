@@ -62,6 +62,8 @@ class BeliKeranjangFragment : Fragment() {
 
         srl_keranjang_beli.setOnRefreshListener {
             transaksiList.clear()
+            rv_beli_keranjang.layoutManager = LinearLayoutManager(context)
+            tv_total_keranjang.text = "Rp$total"
             val handler = Handler()
             handler.postDelayed({
                 getDataTransaksi()
@@ -109,21 +111,17 @@ class BeliKeranjangFragment : Fragment() {
                                         val transaksi =
                                             getdataSnapshot.getValue(Detail_Transaksi::class.java)
                                         transaksiList.add(transaksi!!)
+
                                         total =
-                                            (transaksiList.sumBy { it.harga_produk?.toInt()!! }).toString()
-                                        Toast.makeText(
-                                            context,
-                                            transaksiList[0].nm_produk,
-                                            Toast.LENGTH_LONG
-                                        )
-                                            .show()
+                                            (transaksiList.sumBy { it.harga_beli?.toInt()!! }).toString()
+
                                     }
 
                                     preferences.setValues("totalHargaProdukBeli", total)
                                     tv_total_keranjang.text = "Rp$total"
 
-                                        rv_beli_keranjang.adapter = KeranjangAdapter(transaksiList) {
-                                        }
+                                    rv_beli_keranjang.adapter = KeranjangAdapter(transaksiList) {
+                                    }
 
                                 } else {
                                     Toast.makeText(

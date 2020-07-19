@@ -154,4 +154,9 @@
     <string name="hari">Hari</string>
     <string name="jika_mengubah_durasi_perawatan_agar_melakukan_swipe_down_agar_terupdate">Jika Mengubah Durasi Perawatan agar melakukan Swipe down agar terupdate</string>
     <string name="jika_merubah_alamat_pengiriman_dan_opsi_pengiriman_agar_melakukan_swipe_down_agar_terupdate">Jika merubah alamat pengiriman dan opsi pengiriman agar melakukan swipe down agar terupdate</string>
+    <string name="total_bayar">"Total Bayar : "</string>
+    <string name="bukti_pembayaran">Bukti Pembayaran</string>
+    <string name="dirawat_sejak">"Dirawat Sejak : "</string>
+    <string name="tambah_durasi">Tambah Durasi</string>
+    <string name="deskripsi_pertumbuhan">Deskripsi Pertumbuhan</string>
 </resources>
